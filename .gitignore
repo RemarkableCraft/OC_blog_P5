@@ -1,2 +1,4 @@
 # ignorer le dossier backstage
-backstage/
+/backstage/
+# ignorer le dossier vendor
+/vendor/
