@@ -4,7 +4,6 @@
 		<div class="row gy-4">
 
 			<div class="col-lg-8">
-				<h2>Titre article</h2>
 				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi maxime iusto fugiat, vel quisquam officia deserunt repellendus corrupti aliquam doloremque quo facere quae. Consectetur quasi provident maxime necessitatibus quis expedita.
 				Expedita, repellendus corporis error nostrum placeat quos officiis dolorem, accusamus voluptates ipsum exercitationem, amet impedit repudiandae, ipsa! Doloribus alias, obcaecati. Cupiditate dolores earum, suscipit ab aliquid voluptate, quod iste reprehenderit.
 				Adipisci, libero a minus laborum saepe nemo rerum animi distinctio non ad culpa molestias voluptatum, voluptas tempora optio, dolorem, quibusdam. Magni molestiae provident adipisci officiis nobis sint quaerat error hic?

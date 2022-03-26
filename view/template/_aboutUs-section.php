@@ -1,18 +1,18 @@
-<section id="about" class="about">
+<section id="about" class="about section-bg">
 	<div class="container">
 
 		<div class="section-title" data-aos="fade-up">
-			<h2>About Us</h2>
-			<p>Magnam dolores commodi suscipit eius consequatur</p>
+			<h2>À propos</h2>
+			<p>Designer - Développeuse Web</p>
 		</div>
 
-		<div class="row">
-			<div class="col-lg-6" data-aos="fade-right">
-				<div class="image">
-					<img src="public/assets/img/about.jpg" class="img-fluid" alt="">
+		<div class="row align-items-center">
+			<div class="col-lg-4" data-aos="fade-right">
+				<div class="image bg-white">
+					<img src="public/assets/img/avatar/avatar.jpg" class="img-fluid w-100" alt="autoportrait">
 				</div>
 			</div>
-			<div class="col-lg-6" data-aos="fade-left">
+			<div class="col-lg-8" data-aos="fade-left">
 				<div class="content pt-4 pt-lg-0 pl-0 pl-lg-3 ">
 					<h3>Voluptatem dignissimos provident quasi corporis</h3>
 					<p class="fst-italic">

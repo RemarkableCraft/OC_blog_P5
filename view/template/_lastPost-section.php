@@ -1,8 +1,9 @@
-<section id="blog-post" class="blog">
+<section id="blog" class="blog">
 	<div class="container">
 
 		<div class="section-title" data-aos="fade-up">
 			<h2>Blog</h2>
+			<p>Voici un liste de mes derniers articles</p>
 		</div>
 
 		<div class="row blog-container" data-aos="fade-up" data-aos-delay="200">
@@ -20,6 +21,10 @@
 				</div>
 			</div>
 
+		</div>
+
+		<div class="d-flex justify-content-center">
+			<a data-aos="fade-up" data-aos-delay="200" href="?action=blog" class="btn-get-started scrollto">En voir d'autre</a>
 		</div>
 	</div>
 </section>

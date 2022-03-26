@@ -3,10 +3,10 @@
 
 		<div class="section-title" data-aos="fade-up">
 			<h2>Curiculum vitae</h2>
-			<p>Magnam dolores commodi suscipit eius consequatur ex aliquid fuga eum quidem</p>
+			<p>On sait jamais. Cà peut toujours servir</p>
 		</div>
 
-		<div class="row">
+		<div class="row align-items-center">
 			<div class="col-lg-6 order-2 order-lg-1">
 				<div class="icon-box mt-5 mt-lg-0" data-aos="fade-up">
 					<i class="bx bx-receipt"></i>

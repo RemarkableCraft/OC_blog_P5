@@ -6,26 +6,15 @@
 
 			<div class="row justify-content-center">
 				<div class="col-lg-6">
-					<a href="#header" class="scrollto footer-logo"><img src="public/assets/img/hero-logo.png" alt=""></a>
-					<h3>Knight</h3>
-					<p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
-				</div>
-			</div>
-
-			<div class="row footer-newsletter justify-content-center">
-				<div class="col-lg-6">
-					<form action="" method="post">
-						<input type="email" name="email" placeholder="Enter your Email"><input type="submit" value="Subscribe">
-					</form>
+					<a href="?action=home" class="scrollto footer-logo"><img src="public/assets/img/logo/code.png" alt=""></a>
+					<h3>Mon Blog</h3>
+					<p>Merci d'avoir lu jusqu'au bout.</p>
 				</div>
 			</div>
 
 			<div class="social-links">
-				<a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-				<a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-				<a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-				<a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-				<a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+				<a href="#" class="facebook" target="_blank"><i class="bx bxl-facebook"></i></a>
+				<a href="#" class="linkedin" target="_blank"><i class="bx bxl-linkedin"></i></a>
 			</div>
 
 		</div>
@@ -40,7 +29,7 @@
 			<!-- You can delete the links only if you purchased the pro version. -->
 			<!-- Licensing information: https://bootstrapmade.com/license/ -->
 			<!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/knight-free-bootstrap-theme/ -->
-			Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+			Designed by <a href="https://bootstrapmade.com/" target="_blank">BootstrapMade</a>
 		</div>
 	</div>
 </footer>
