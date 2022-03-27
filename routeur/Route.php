@@ -3,7 +3,7 @@ namespace routeur;
 
 use core\Superglobals;
 use controller\{Controller};
-use controller\front\{HomeController, SignController, BlogController};
+use controller\front\{HomeController, SignController, BlogController, ContactController};
 
 /**
  * 
@@ -34,6 +34,11 @@ class Route extends Superglobals
 				case 'post':
 					$post = new BlogController;
 					$post->get_post();
+					break;
+
+				case 'contact':
+					$contact = new ContactController;
+					$contact->contact();
 					break;
 				
 				default:

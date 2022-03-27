@@ -66,6 +66,9 @@
 	<!-- Template Main JS File -->
 	<script src="public/assets/js/knight.js"></script>
 
+	<!-- affichage des messages 'required' -->
+	<script defer src="public/assets/js/validationForm.js"></script>
+
 </body>
 
 </html>
