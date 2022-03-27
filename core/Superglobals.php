@@ -1,11 +1,11 @@
 <?php
-namespace controller;
+namespace core;
 
 /**
  * Class SuperglobalsController
  * Permet de sécuriser les données
  */
-class SuperglobalsController
+abstract class Superglobals
 {
 	private $_GET;
 	

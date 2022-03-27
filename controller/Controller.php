@@ -1,12 +1,12 @@
 <?php
 namespace controller;
 
-use controller\SuperglobalsController;
+use core\Superglobals;
 
 /**
  * 
  */
-class Controller extends SuperglobalsController
+class Controller extends Superglobals
 {
 	
 }
