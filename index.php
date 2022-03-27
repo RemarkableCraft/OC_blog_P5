@@ -12,5 +12,7 @@ spl_autoload_register('autoload');
 
 use routeur\Route;
 
-new Route;
+$route = new Route;
+$route->router();
+
 	

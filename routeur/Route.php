@@ -10,9 +10,8 @@ use controller\front\{HomeController, SignController, BlogController};
  */
 class Route extends Superglobals
 {
-	function __construct()
+	public function router()
 	{
-
 		$get = $this->get_GET();
 
 		if (isset($get['action'])) {
