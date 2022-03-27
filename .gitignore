@@ -1,2 +1,3 @@
-# ignorer le dossier backstage
-backstage/
+/backstage/
+/vendor/
+/Knight/
