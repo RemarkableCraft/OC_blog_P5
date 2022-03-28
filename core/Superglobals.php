@@ -26,6 +26,7 @@ abstract class Superglobals
 		$this->_SESSION = (isset($_SESSION)) ? $_SESSION : null;
 	}
 
+
 	/**
 	 * Retourne la valeur du _GET
 	 * @param  string|null $key Paramètre que l'on souhaite
@@ -39,6 +40,7 @@ abstract class Superglobals
 			return $this->_GET;
 		}
 	}
+
 
 	/**
 	 * Retourne la valeur du _POST
@@ -54,6 +56,10 @@ abstract class Superglobals
 		}
 	}
 
+
+	/**
+	 * Ajoute une nouvelle valeur à _SESSION
+	 */
 	public function set_SESSION($key, $value)
 	{
 		$_SESSION[$key] = $value;
