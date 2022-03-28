@@ -13,6 +13,7 @@ class HomeController extends Controller
 	{
 		$post = $this->get_SESSION('post');
 		$errorContact = $this->get_SESSION('msgErrorContact');
+		$successContact = $this->get_SESSION('msgSuccessContact');
 		require 'view/front/home.php';
 	}
 }

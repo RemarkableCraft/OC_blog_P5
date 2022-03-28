@@ -15,4 +15,8 @@ use routeur\Route;
 $route = new Route;
 $route->router();
 
+
+unset($_SESSION['msgErrorContact']);
+unset($_SESSION['msgSuccessContact']);
+
 	

@@ -15,6 +15,12 @@
 						</div>
 					<?php endif ?>
 
+					<?php if (isset($successContact) && !empty($successContact)): ?>
+						<div class="alert alert-success" role="alert">
+							<?= $successContact ?>
+						</div>
+					<?php endif ?>
+
 					<div class="row">
 						<!-- ======= Identité expéditeur ======= -->
 						<div class="col-md-6 form-group">
@@ -57,5 +63,3 @@
 
 	</div>
 </section>
-
-<?php var_dump($_SESSION) ?>
