@@ -13,6 +13,5 @@
             "email": "masseestelle@gmail.com"
         }
     ],
-    "minimum-stability": "stable",
-    "require": {}
+    "minimum-stability": "stable"
 }

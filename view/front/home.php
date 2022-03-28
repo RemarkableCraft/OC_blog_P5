@@ -22,4 +22,9 @@
 	</main>
 <?php $main = ob_get_clean(); ?>
 
+<?php
+	unset($_SESSION['msgErrorContact']);
+	unset($_SESSION['msgSuccessContact']);
+?>
+
 <?php require 'view/template.php'; ?>

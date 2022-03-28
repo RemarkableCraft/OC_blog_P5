@@ -14,5 +14,3 @@ use routeur\Route;
 
 $route = new Route;
 $route->router();
-
-	
