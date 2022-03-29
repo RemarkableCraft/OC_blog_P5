@@ -1,6 +1,8 @@
 <?php
 namespace core;
 
+require_once 'model/DbModel.php';
+
 /**
  * Class SuperglobalsController
  * Permet de sécuriser les données
