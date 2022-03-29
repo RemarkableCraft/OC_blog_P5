@@ -22,8 +22,11 @@
 	<link href="public/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 	<link href="public/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-	<!-- Template Main CSS File -->
+	<!-- Template Knight CSS File -->
 	<link href="public/assets/css/knight.css" rel="stylesheet">
+
+	<!-- Template Main CSS File -->
+	<link href="public/assets/css/styles.css" rel="stylesheet">
 
 	<!-- =======================================================
 	* Template Name: Knight - v4.7.0
@@ -67,7 +70,11 @@
 	<script src="public/assets/js/knight.js"></script>
 
 	<!-- affichage des messages 'required' -->
-	<script defer src="public/assets/js/validationForm.js"></script>
+	<script src="public/assets/js/validationForm.js"></script>
+
+	<!-- Vérifier en temps réel la bonne syntax du mot de passe
+	---- & l'option mot de passe visible ou caché -->
+	<script src="public/assets/js/validationPassword.js"></script>
 
 </body>
 

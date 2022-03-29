@@ -1,0 +1,36 @@
+
+/* controle le bouton password en claire */
+.toggle-password.active .eye {
+  display: none;
+}
+
+.toggle-password.active .eye-slash {
+  display: inherit;
+}
+
+.toggle-password .eye-slash {
+  display: none;
+}
+/* controle le bouton password en claire */
+.toggle-password1.active .eye {
+  display: none;
+}
+
+.toggle-password1.active .eye-slash {
+  display: inherit;
+}
+
+.toggle-password1 .eye-slash {
+  display: none;
+}/* controle le bouton password en claire */
+.toggle-password2.active .eye {
+  display: none;
+}
+
+.toggle-password2.active .eye-slash {
+  display: inherit;
+}
+
+.toggle-password2 .eye-slash {
+  display: none;
+}
