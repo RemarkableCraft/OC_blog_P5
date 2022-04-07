@@ -30,27 +30,50 @@ class SignController extends Controller
 	{
 		$post = $this->get_POST();
 		$session = $this->get_SESSION();
+		$server = $this->get_SERVER();
 
 		if (isset($post) && $post['soumission'] === 'signUp') {
 			$this->set_SESSION('postUp', $post);
-			var_dump($_SESSION['postUp']);
 			if (!empty($post['name']) && !empty($post['surname']) && !empty($post['pseudo1']) && !empty($post['email']) && !empty($post['password1']) && !empty($post['password2'])) {
+				// name
 				$name = $this->verif($post['name']);
+
+				// surname
 				$surname = $this->verif($post['surname']);
+
+				// pseudo
 				$pseudo = $this->verif($post['pseudo1']);
 
 				$pseudoExist = new Model;
-				$pseudoExist = $pseudoExist->select('role','user','pseudo','admin','','');
-				var_dump($pseudoExist);
+				$pseudoExist = $pseudoExist->select('pseudo','user','pseudo',$pseudo,'','');
+				$pseudoExist = $pseudoExist->fetch();
 
+				if ($pseudoExist !== false) {
+					$this->set_SESSION('msgErrorSignUp', "Ce pseudo existe déjà, trouve en un autre.<br><em>Astuce ajoute des chiffres à la fin.</em>");
+					header('Location: ?action=sign');
+					die;
+				}
+				
+				// email
 				if (filter_var($post['email'], FILTER_VALIDATE_EMAIL)) {
 					$email = $this->verif($post['email']);
+
+					$emailExist = new Model;
+					$emailExist = $emailExist->select('email','user','email',$email,'','');
+					$emailExist = $emailExist->fetch();
+
+					if ($emailExist !== false) {
+						$this->set_SESSION('msgErrorSignUp', "Cet email est déjà pris.<br><em>Avez-vous déjà créé un compte?</em>");
+						header('Location: ?action=sign');
+						die;
+					}
 				} else {
 					$this->set_SESSION('msgErrorSignUp', "Ton mail n'est pas correct");
 					header('Location: ?action=sign');
 					die();
 				}
 
+				// password
 				$uppercase = preg_match('@[A-Z]@', $post['password1']);
 				$lowercase = preg_match('@[a-z]@', $post['password1']);
 				$number = preg_match('@[0-9]@', $post['password1']);
@@ -69,9 +92,89 @@ class SignController extends Controller
 					}
 				}
 
+				// enregistrement dans la BDD
 				if (!isset($session['msgErrorSignUp'])) {
 					$token = bin2hex(random_bytes(10));
 					$code = $token[15].$token[2].$token[16].$token[1].$token[8].$token[10];
+
+					$value = $name.','.$surname.','.$pseudo.','.$email.','.$password.','.$token;
+					$newUser = new Model;
+					$newUser = $newUser->insert('user', $value);
+
+					$lien = $server['HTTP_ORIGIN'].$server['PHP_SELF'].'?action=valid&token='.$token;
+
+					if ($newUser === true) {
+						$to = $email;
+						$subject = 'Valider votre inscription.';
+						$message = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+							<html xmlns:v="urn:schemas-microsoft-com:vml">
+							<head>
+								<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+								<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+
+								<title>Validez votre inscription</title>
+							</head>
+							<body>
+								<table width="100%" cellpadding="0" cellspacing="0" bgcolor="#eee" style="font-family: sans-serif;">
+									<thead style="text-align: center;">
+										<tr style="height: 5vh;"></tr>
+										<tr>
+											<td width="10%"></td>
+											<td bgcolor="#8FBC8B" style="padding: 10px; color: #fff; font-weight: bold; font-size: 25px; border-radius: 20Px 20Px 0 0;">Valider votre inscription</td>
+											<td width="10%"></td>
+										</tr>
+									</thead>
+
+									<tbody>
+										<tr>
+											<td width="10%"></td>
+											<td bgcolor="#fff" style="padding: 20px; font-size: 18px;">Bonjour '.$pseudo.'<br><br>Pour finaliser la création de votre compte, il faut le valider.<br>Cliquez ici</td>
+											<td width="10%"></td>
+										</tr>
+										<tr>
+											<td width="10%"></td>
+											<td bgcolor="#fff" style="padding: 20px; font-size: 18px; text-align: center;">
+												<a href="'.$lien.'" style="text-decoration: none; padding: 20px 50px; background: #8FBC8D; border-radius: 50px; color: #fff; font-weight: bold; font-size: 20px;">Valider mon compte</a>
+											</td>
+											<td width="10%"></td>
+										</tr>
+										<tr>
+											<td width="10%"></td>
+											<td bgcolor="#fff" style="padding: 20px; font-size: 18px;">Et entrez le code suivant: <strong style="font-size: 20px;">'.$code.'</strong></td>
+											<td width="10%"></td>
+										</tr>
+									</tbody>
+
+									<tfoot>
+										<tr>
+											<td width="10%"></td>
+											<td bgcolor="#D5E6D4" style="padding: 10px; font-size: 25px; border-radius: 0 0 20px 20px;">&nbsp</td>
+											<td width="10%"></td>
+										</tr>
+										<tr style="height: 5vh;"></tr>
+									</tfoot>
+								</table>
+							</body>
+							</html>';
+						$headers = "MIME-Version: 1.0\n";
+						$headers .= "From : ".$email."\n";
+						$headers .= "X-Priority : 1\n";
+						$headers .= "Content-type: text/html; charset=utf-8\n";
+						$headers .= "Content-Transfer-Encoding: 8bit\n";
+
+						if (mail($to, $subject, $message, $headers)) {
+							unset($_SESSION['postUp']);
+							$this->set_SESSION('msgSuccessSignUp', 'Votre compte est bien enregistré.<br>Vous allez recevoir un mail pour valider votre compte.');
+							header('Location: ?action=sign');
+							die;
+						} else {
+							$this->set_SESSION('msgErrorSignUp', 'Le mail de validation n\'a pu être envoyer. Contactez le site.');
+						}
+					} else {
+						$this->set_SESSION('msgErrorSignUp', 'Une erreur est survenue lors de votre inscription.');
+						header('Location: ?action=sign');
+						die;
+					}
 				}
 			} else {
 				$this->set_SESSION('msgErrorSignUp', 'Certains champs ne sont pas remplis');

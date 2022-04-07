@@ -12,6 +12,7 @@ abstract class Superglobals
 	private $_GET;
 	private $_POST;
 	private $_SESSION;
+	private $_SERVER;
 	
 	function __construct()
 	{
@@ -26,6 +27,7 @@ abstract class Superglobals
 		$this->_GET = (isset($_GET)) ? $_GET : null;
 		$this->_POST = (isset($_POST)) ? $_POST : null;
 		$this->_SESSION = (isset($_SESSION)) ? $_SESSION : null;
+		$this->_SERVER = (isset($_SERVER)) ? $_SERVER : null;
 	}
 
 
@@ -78,6 +80,20 @@ abstract class Superglobals
 			return (isset($this->_SESSION["$key"])) ? $this->_SESSION["$key"] : null;
 		} else {
 			return $this->_SESSION;
+		}
+	}
+
+	/**
+	 * Retourne la valeur du _SERVER
+	 * @param  string|null $key Paramètre que l'on souhaite
+	 * @return string           Valeur que l'on souhaite
+	 */
+	public function get_SERVER(string $key = null)
+	{
+		if ($key !== null) {
+			return (isset($this->_SERVER["$key"])) ? $this->_SERVER["$key"] : null;
+		} else {
+			return $this->_SERVER;
 		}
 	}
 }

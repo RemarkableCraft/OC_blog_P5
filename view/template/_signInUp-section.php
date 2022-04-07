@@ -78,7 +78,7 @@
 							<button class="btn btn-secondary eye-slash rounded-0 rounded-end" type="button"><i class="bi bi-eye-slash"></i></button>
 						</div>
 
-						<div class="invalid-feedback">C'est presque pareil, mais tu t'es trompé quelque part.</div><!-- message required -->
+						<div class="invalid-feedback">Je sais c'est long de recopier son code mais on n'a pas le choix.</div><!-- message required -->
 					</div><!-- password2 -->
 
 					<div class="mt-3 form-group">

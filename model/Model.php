@@ -42,30 +42,30 @@ class Model extends DbModel
 		
 
 		if ($condition == NULL) {
-			$req = "query('SELECT ".$champ." FROM ".$table." ".$fk." ".$cmd."');";
+			$req = $db->query('SELECT '.$champ.' FROM '.$table.' '.$fk.' '.$cmd.'');
+			return $req;
 		} else {
-			$req = '$db->prepare(\'SELECT '.$champ.' FROM '.$table.' '.$fk.' WHERE '.$condition.' = ? '.$cmd.'\');';
-			$req.= ' $req->execute(array(\''.$value.'\'));';
+			$req = $db->prepare('SELECT '.$champ.' FROM '.$table.' '.$fk.' WHERE '.$condition.' = ? '.$cmd.'');
+			$req->execute(array($value));
+
+			return $req;
 		}
-
-		echo $req;
-
-		return $stmt;
 	}
 
 
 	public function insert(string $table, string $value)
 	{
 		$value = explode(',', $value);
+		var_dump($value);
 
-		$db = $this->dbConnect;
+		$db = $this->dbConnect();
 
 		if ($table === 'user') {
 			$req = $db->prepare
 			('INSERT INTO user(name, surname, pseudo, email, password, token, createDate)
 				VALUES(?, ?, ?, ?, ?, ?, NOW())');
 
-			$req->execute(array($value[0], $value[1], $value[2], $value[3], $value[4], $value[5]));
+			$req = $req->execute(array($value[0], $value[1], $value[2], $value[3], $value[4], $value[5]));
 
 			return $req;
 		} elseif ($table === 'post') {
@@ -73,7 +73,7 @@ class Model extends DbModel
 			('INSERT INTO post(title, chapo, content, image, autor, createDate)
 				VALUES(?, ?, ?, ?, ?, NOW())');
 
-			$req->execute(array($value[0], $value[1], $value[2], $value[3], $value[4]));
+			$req = $req->execute(array($value[0], $value[1], $value[2], $value[3], $value[4]));
 
 			return $req;
 		} elseif ($table === 'comment') {
@@ -81,7 +81,7 @@ class Model extends DbModel
 			('INSERT INTO comment(content, autor, post, createDate)
 				VALUES(?, ?, ?, NOW())');
 
-			$req->execute(array($value[0], $value[1], $value[2]));
+			$req = $req->execute(array($value[0], $value[1], $value[2]));
 
 			return $req;
 		}
