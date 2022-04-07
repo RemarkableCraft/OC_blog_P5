@@ -9,37 +9,49 @@
 
 			<div class="col-lg-6 border-end pe-lg-5">
 				<!-- ======= Inscription Form ======= -->
-				<form action="" method="POST" role="form" class="needs-validation" data-aos="fade-right" novalidate>
+				<form action="?action=signUp" method="POST" role="form" class="needs-validation" data-aos="fade-right" novalidate>
 					<div class="row text-center">
 						<h3>Inscription</h3>
 					</div>
 
+					<?php if (isset($errorSignUp) && !empty($errorSignUp)): ?>
+						<div class="alert alert-danger" role="alert">
+							<?= $errorSignUp ?>
+						</div>
+					<?php endif ?>
+
+					<?php if (isset($successSignUp) && !empty($successSignUp)): ?>
+						<div class="alert alert-success" role="alert">
+							<?= $successSignUp ?>
+						</div>
+					<?php endif ?>
+
 					<div class="row mt-3">
 						<div class="col-md-6 form-group">
-							<input type="text" name="name" id="name" class="form-control" placeholder="Nom" required>
+							<input type="text" name="name" id="name" class="form-control" placeholder="Nom" required value="<?php if (isset($postUp) && !empty($postUp)) {echo $postUp['name'];} ?>">
 							<div class="invalid-feedback">Comment il s'écrit déjà ton nom?</div><!-- message required -->
 						</div><!-- nom -->
 
 						<div class="col-md-6 form-group mt-3 mt-md-0">
-							<input type="text" name="text" id="text" class="form-control" placeholder="Prénom" required>
+							<input type="text" name="surname" id="surname" class="form-control" placeholder="Prénom" required value="<?php if (isset($postUp) && !empty($postUp)) {echo $postUp['surname'];} ?>">
 							<div class="invalid-feedback">C'est quoi déjà ton prénom?</div><!-- message required -->
 						</div><!-- prénom -->
 					</div>
 
 					<div class="row mt-3">
 						<div class="col-md-6 form-group">
-							<input type="text" name="pseudo1" id="pseudo1" class="form-control" placeholder="Pseudo" required>
+							<input type="text" name="pseudo1" id="pseudo1" class="form-control" placeholder="Pseudo" required value="<?php if (isset($postUp) && !empty($postUp)) {echo $postUp['pseudo1'];} ?>">
 							<div class="invalid-feedback">Tu n'as pas un pseudonyme, ce sera plus simple?</div><!-- message required -->
 						</div><!-- pseudo1 -->
 
 						<div class="col-md-6 form-group mt-3 mt-md-0">
-							<input type="email" name="email" id="email" class="form-control" placeholder="Mail" required>
+							<input type="email" name="email" id="email" class="form-control" placeholder="Mail" required value="<?php if (isset($postUp) && !empty($postUp)) {echo $postUp['email'];} ?>">
 							<div class="invalid-feedback">Je vais en avoir besoin pour t'envoyer un mail de validation.</div><!-- message required -->
 						</div><!-- mail -->
 					</div>
 
 					<div class="mt-3 form-group input-group">
-						<input type="password" name="password1" id="password1" class="form-control" aria-describedby="passwordHelpBlock" placeholder="Mot de passe" required>
+						<input type="password" name="password1" id="password1" class="form-control" aria-describedby="passwordHelpBlock" placeholder="Mot de passe" required value="<?php if (isset($postUp) && !empty($postUp)) {echo $postUp['password1'];} ?>">
 
 						<div class="toggle-password1">
 							<button type="button" class="btn btn-secondary eye rounded-0 rounded-end"><i class="bi bi-eye"></i></button>
@@ -71,7 +83,7 @@
 
 					<div class="mt-3 form-group">
 						<div class="text-center">
-							<button type="submit" name="soumission-inscription" class="btn-get-started">S'inscrire</button>
+							<button type="submit" name="soumission" value="signUp" class="btn-get-started">S'inscrire</button>
 						</div>
 					</div>
 				</form>
@@ -86,7 +98,7 @@
 					</div>
 
 					<div class="mt-3 form-group">
-						<input type="text" name="pseudo" id="pseudo" class="form-control" placeholder="Pseudo" required>
+						<input type="text" name="pseudo" id="pseudo" class="form-control" placeholder="Pseudo" required value="<?php if (isset($postIn) && !empty($postIn)) {echo $postIn['pseudo'];} ?>">
 						<div class="invalid-feedback">Ton pseudo c'est le néant?</div><!-- message required -->
 					</div><!-- pseudo -->
 
@@ -103,7 +115,7 @@
 
 					<div class="mt-3 form-group">
 						<div class="text-center">
-							<button type="submit" name="soumission-connexion" class="btn-get-started">Se Connecter</button>
+							<button type="submit" name="soumission" value="signIn" class="btn-get-started">Se Connecter</button>
 						</div>
 					</div>
 				</form>

@@ -10,4 +10,11 @@
   </main>
 <?php $main = ob_get_clean(); ?>
 
+<?php
+	unset($_SESSION['msgErrorSignUp']);
+	unset($_SESSION['msgSuccessSignUp']);
+	unset($_SESSION['msgErrorSignIn']);
+	unset($_SESSION['msgSuccessSignIn']);
+?>
+
 <?php require 'view/template.php'; ?>

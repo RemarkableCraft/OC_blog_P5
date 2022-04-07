@@ -16,7 +16,7 @@ class Model extends DbModel
 	 * @param  string|null $expression trier les données sur une ou plusieurs colonnes, par ordre ascendant ou descendant.
 	 * @param  int|null    $count      nbr de resultat
 	 */
-	public function select(string $champ, string $table, string $condition=NULL, string $value=NULL, string $expression=NULL, int $count=NULL)
+	public function select($champ, $table, $condition=NULL, $value=NULL, $expression=NULL, $count=NULL)
 	{
 		$db = $this->dbConnect();
 
@@ -43,16 +43,14 @@ class Model extends DbModel
 
 		if ($condition == NULL) {
 			$req = "query('SELECT ".$champ." FROM ".$table." ".$fk." ".$cmd."');";
-			return $req;
 		} else {
-			$req = "prepare('SELECT ".$champ." FROM ".$table." ".$fk." WHERE ".$condition." = ? ".$cmd."');";
-			$req.= ' $stmt->execute(array('.$value.'));';
-			return $req;
+			$req = '$db->prepare(\'SELECT '.$champ.' FROM '.$table.' '.$fk.' WHERE '.$condition.' = ? '.$cmd.'\');';
+			$req.= ' $req->execute(array(\''.$value.'\'));';
 		}
 
-		$stmt = $db->$req;
+		echo $req;
 
-		return $req;
+		return $stmt;
 	}
 
 

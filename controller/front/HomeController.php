@@ -9,7 +9,7 @@ use controller\controller;
 class HomeController extends Controller
 {
 	
-	public function get_home()
+	public function home()
 	{
 		$post = $this->get_SESSION('post');
 		$errorContact = $this->get_SESSION('msgErrorContact');

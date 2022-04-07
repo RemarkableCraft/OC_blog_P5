@@ -13,7 +13,7 @@ abstract class DbModel
 
 	protected function dbConnect()
 	{
-		$db = new PDO('mysql:host='.self::HOST.';dbname='.self::DBNAME.';charset=utf8', self::USERNAME, self::PASSWORD);
+		$db = new \PDO('mysql:host='.self::HOST.';dbname='.self::DBNAME.';charset=utf8', self::USERNAME, self::PASSWORD);
 		return $db;
 	}
 }

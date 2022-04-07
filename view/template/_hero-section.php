@@ -5,6 +5,6 @@
 		</a>
 		<h1 data-aos="zoom-in">Bienvenue sur Mon Blog</h1>
 		<h2 data-aos="fade-up">Je suis Designer / Développeur Web, et je partage avec vous mes projets</h2>
-		<a data-aos="fade-up" data-aos-delay="200" href="#about" class="btn-get-started scrollto">Allons-y</a>
+		<a data-aos="fade-up" data-aos-delay="200" href="#about" class="btn-get-started">Allons-y</a>
 	</div>
 </section>

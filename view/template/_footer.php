@@ -6,7 +6,7 @@
 
 			<div class="row justify-content-center">
 				<div class="col-lg-6">
-					<a href="?action=home" class="scrollto footer-logo"><img src="public/assets/img/logo/code.png" alt=""></a>
+					<a href="?action=home" class="footer-logo"><img src="public/assets/img/logo/code.png" alt=""></a>
 					<h3>Mon Blog</h3>
 					<p>Merci d'avoir lu jusqu'au bout.</p>
 				</div>
