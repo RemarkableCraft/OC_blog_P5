@@ -101,7 +101,7 @@ class SignController extends Controller
 					$newUser = new Model;
 					$newUser = $newUser->insert('user', $value);
 
-					$lien = $server['HTTP_ORIGIN'].$server['PHP_SELF'].'?action=valid&token='.$token;
+					$lien = $server['HTTP_ORIGIN'].$server['PHP_SELF'].'?action=valid&token='.$token.'&pseudo='.$pseudo;
 
 					if ($newUser === true) {
 						$to = $email;
@@ -181,12 +181,84 @@ class SignController extends Controller
 				header('Location: ?action=sign');
 				die();
 			}
-		} else {
-			$this->set_SESSION('msgErrorSignUp', 'Certains champs ne sont pas remplis');
-			header('Location: ?action=sign');
-			die();
 		}
 	}
+
+
+	/**
+	 * Affiche la page de validation
+	 */
+	public function valid()
+	{
+		$token = $this->get_GET('token');
+		$user = $this->get_GET('pseudo');
+		$errorValid = $this->get_SESSION('msgErrorValid');
+		$successValid = $this->get_SESSION('msgSuccessValid');
+		require 'view/front/validSignUp.php';
+	}
+
+
+	/**
+	 * Traitement du formulaire de validation
+	 */
+	public function confirm()
+	{
+		$post = $this->get_POST();
+		$server = $this->get_SERVER();
+		$session = $this->get_SESSION();
+
+		if (empty($session['msgErrorValid'])) {
+			if (isset($post) && $post['soumission'] === 'valid') {
+				$token = $post['token'];
+				$verifCode = $token[15].$token[2].$token[16].$token[1].$token[8].$token[10];
+
+				if ($verifCode === $post['code']) {
+
+					$verifToken = new Model;
+					$verifToken = $verifToken->select('pseudo','user','token',$token,'','');
+					$verifToken = $verifToken->fetch();
+
+					if ($verifToken) {
+						if ($verifToken['pseudo'] === $post['user']) {
+							$pseudo = $post['user'];
+
+							$validCompte = new Model;
+							$validCompte = $validCompte->update('user','validateDate=NOW(),token=NULL','pseudo',$pseudo);
+
+							if ($validCompte !== false) {
+								$this->set_SESSION('msgSuccessValid', 'Votre compte est validé.');
+								header('Location: '.$server['HTTP_REFERER']);
+								die;
+							} else {
+								$this->set_SESSION('msgErrorValid', 'Problème lors de la validation de votre compte.');
+								header('Location: '.$server['HTTP_REFERER']);
+								die;
+							}
+						} else {
+							http_response_code(404);
+							header('Location: ?action=404');
+							die;
+						}
+					} else {
+						http_response_code(404);
+						header('Location: ?action=404');
+						die;
+					}
+				} else {
+					$this->set_SESSION('msgErrorValid', 'Ce n\'est pas le bon code');
+					header('Location: '.$server['HTTP_REFERER']);
+					die;
+				}
+			}
+		} else {
+			$token = $this->get_GET('token');
+			$user = $this->get_GET('pseudo');
+			$errorValid = $this->get_SESSION('msgErrorValid');
+			$successValid = $this->get_SESSION('msgSuccessValid');
+			require 'view/front/validSignUp.php';
+		}
+	}
+
 
   function verif($value)
 	{

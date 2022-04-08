@@ -45,7 +45,26 @@ class Route extends Superglobals
 					$signUp = new SignController;
 					$signUp->signUp();
 					break;
-				
+
+				case 'valid':
+					if (isset($get['token'])) {
+						$valid = new SignController;
+						$valid->valid();
+						break;
+					} else {
+						http_response_code(404);
+						break;
+					}
+
+				case 'confirm':
+					$confirm = new SignController;
+					$confirm->confirm();
+					break;
+
+				case '404':
+					http_response_code(404);
+					break;
+					
 				default:
 					http_response_code(404);
 					break;

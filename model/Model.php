@@ -56,7 +56,6 @@ class Model extends DbModel
 	public function insert(string $table, string $value)
 	{
 		$value = explode(',', $value);
-		var_dump($value);
 
 		$db = $this->dbConnect();
 
@@ -85,5 +84,25 @@ class Model extends DbModel
 
 			return $req;
 		}
+	}
+
+
+
+	public function update($table, $set, $condition, $value)
+	{
+		$db = $this->dbConnect();
+
+		if ($table = 'user') {
+			$req = $db->prepare
+			('UPDATE '.$table.
+				' SET '.$set.
+				' WHERE '.$condition.'=?
+			');
+
+			$req = $req->execute(array($value));
+
+			return $req;
+		}
+		
 	}
 }
