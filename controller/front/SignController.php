@@ -299,25 +299,34 @@ class SignController extends Controller
 							header('Location: ?action=sign');
 							die;
 						}
-						
 					} else {
 						$this->set_SESSION('msgErrorSignIn','Ce compte est en attente de validation');
 						header('Location: ?action=sign');
 						die;
 					}
-					
 				} else {
 					$this->set_SESSION('msgErrorSignIn','Ce compte n\'existe pas.');
 					header('Location: ?action=sign');
 					die;
 				}
-				
 			} else {
 				$this->set_SESSION('msgErrorSignIn', 'Certain champ ne sont pas remplis.');
 				header('Location: ?action=sign');
 				die;
 			}
 		}
+	}
+
+
+	/**
+	 * Traitement de la déconnexion
+	 */
+	public function signOut()
+	{
+		unset($_SESSION['user']);
+		$this->set_SESSION('msgSuccessSignIn','Vous êtes déconnecté.');
+		header('Location: ?action=home');
+		die;
 	}
 
 
