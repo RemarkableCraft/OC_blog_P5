@@ -12,7 +12,7 @@ class BlogController extends Controller
 	/**
 	 * Affiche la page blog.php
 	 */
-	public function get_blog()
+	public function blog()
 	{
 		require 'view/front/blog.php';
 	}
@@ -20,7 +20,7 @@ class BlogController extends Controller
 	/**
 	 * Affiche la page post.php
 	 */
-	public function get_post()
+	public function post()
 	{
 		require 'view/front/post-view.php';
 	}

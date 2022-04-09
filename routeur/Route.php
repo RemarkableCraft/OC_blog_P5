@@ -18,36 +18,70 @@ class Route extends Superglobals
 			switch ($get['action']) {
 				case 'home':
 					$home = new HomeController;
-					$home->get_home();
+					$home->home();
 					break;
 
 				case 'sign':
 					$sign = new SignController;
-					$sign->get_sign();
+					$sign->sign();
 					break;
 
 				case 'blog':
 					$blog = new BlogController;
-					$blog->get_blog();
+					$blog->blog();
 					break;
 
 				case 'post':
 					$post = new BlogController;
-					$post->get_post();
+					$post->post();
 					break;
 
 				case 'contact':
 					$contact = new ContactController;
 					$contact->contact();
 					break;
-				
+
+				case 'signUp':
+					$signUp = new SignController;
+					$signUp->signUp();
+					break;
+
+				case 'valid':
+					if (isset($get['token'])) {
+						$valid = new SignController;
+						$valid->valid();
+						break;
+					} else {
+						http_response_code(404);
+						break;
+					}
+
+				case 'confirm':
+					$confirm = new SignController;
+					$confirm->confirm();
+					break;
+
+				case 'signIn':
+					$signIn = new SignController;
+					$signIn->signIn();
+					break;
+
+				case 'signOut':
+					$signOut = new SignController;
+					$signOut->signOut();
+					break;
+
+				case '404':
+					http_response_code(404);
+					break;
+					
 				default:
 					http_response_code(404);
 					break;
 			}
 		} else {
 			$home = new HomeController;
-			$home->get_home();
+			$home->home();
 		}
 	}
 }
