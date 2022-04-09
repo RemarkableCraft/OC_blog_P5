@@ -25,6 +25,18 @@ class BlogController extends Controller
 	 */
 	public function post()
 	{
-		require 'view/front/post-view.php';
+		$get = $this->get_GET();
+		$idPost = $get['id'];
+
+		$post = new Model;
+		$post = $post->select('*','post','idPost',$idPost,'','');
+		$post = $post->fetch();
+
+		if ($post !== false) {
+			require 'view/front/post-view.php';
+		} else {
+			http_response_code(404);
+			die;
+		}
 	}
 }

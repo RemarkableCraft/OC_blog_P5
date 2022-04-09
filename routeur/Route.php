@@ -32,9 +32,14 @@ class Route extends Superglobals
 					break;
 
 				case 'post':
-					$post = new BlogController;
-					$post->post();
-					break;
+					if (isset($get['id']) && !empty($get['id'])) {
+						$post = new BlogController;
+						$post->post();
+						break;
+					} else {
+						http_response_code(404);
+						break;
+					}					
 
 				case 'sign':
 					$sign = new SignController;
