@@ -61,6 +61,11 @@ class Route extends Superglobals
 					$confirm->confirm();
 					break;
 
+				case 'signIn':
+					$signIn = new SignController;
+					$signIn->signIn();
+					break;
+
 				case '404':
 					http_response_code(404);
 					break;

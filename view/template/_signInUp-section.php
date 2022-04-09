@@ -92,10 +92,22 @@
 
 			<div class="col-lg-6 mt-5 mt-lg-0 ps-lg-5">
 				<!-- ======= Connexion Form ======= -->
-				<form action="" method="POST" role="form" class="needs-validation" data-aos="fade-left" novalidate>
+				<form action="?action=signIn" method="POST" role="form" class="needs-validation" data-aos="fade-left" novalidate>
 					<div class="row text-center">
 						<h3>Connexion</h3>
 					</div>
+
+					<?php if (isset($errorSignIn) && !empty($errorSignIn)): ?>
+						<div class="alert alert-danger" role="alert">
+							<?= $errorSignIn ?>
+						</div>
+					<?php endif ?>
+
+					<?php if (isset($successSignIn) && !empty($successSignIn)): ?>
+						<div class="alert alert-success" role="alert">
+							<?= $successSignIn ?>
+						</div>
+					<?php endif ?>
 
 					<div class="mt-3 form-group">
 						<input type="text" name="pseudo" id="pseudo" class="form-control" placeholder="Pseudo" required value="<?php if (isset($postIn) && !empty($postIn)) {echo $postIn['pseudo'];} ?>">

@@ -37,7 +37,6 @@
 </head>
 
 <body>
-
 	<!-- ======= Hero Section ======= -->
 	<?php if (isset($hero) && $hero === "true") {
 		include 'template/_hero-section.php';
@@ -75,6 +74,14 @@
 	<!-- Vérifier en temps réel la bonne syntax du mot de passe
 	---- & l'option mot de passe visible ou caché -->
 	<script src="public/assets/js/validationPassword.js"></script>
+
+	<script>
+		window.onload = (event) => {
+			let myAlert = document.querySelector('.toast');
+			let bsAlert = new bootstrap.Toast(myAlert);
+			bsAlert.show();
+		}
+	</script>
 
 </body>
 

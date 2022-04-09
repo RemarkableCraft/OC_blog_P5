@@ -15,11 +15,19 @@ class SignController extends Controller
 	 */
 	public function sign()
 	{
-		$postUp = $this->get_SESSION('postUp');
-		$postIn = $this->get_SESSION('postIn');
-		$errorSignUp = $this->get_SESSION('msgErrorSignUp');
-		$successSignUp = $this->get_SESSION('msgSuccessSignUp');
-		require 'view/front/signInUp.php';
+		$session = $this->get_SESSION();
+		if (isset($session['user']) && !empty($session['user'])) {
+			header('Location: ?action=home');
+			die;
+		} else {
+			$postUp = $this->get_SESSION('postUp');
+			$postIn = $this->get_SESSION('postIn');
+			$errorSignUp = $this->get_SESSION('msgErrorSignUp');
+			$successSignUp = $this->get_SESSION('msgSuccessSignUp');
+			$errorSignIn = $this->get_SESSION('msgErrorSignIn');
+			$successSignIn = $this->get_SESSION('msgSuccessSignIn');
+			require 'view/front/signInUp.php';
+		}
 	}
 
 
@@ -256,6 +264,59 @@ class SignController extends Controller
 			$errorValid = $this->get_SESSION('msgErrorValid');
 			$successValid = $this->get_SESSION('msgSuccessValid');
 			require 'view/front/validSignUp.php';
+		}
+	}
+
+
+	/**
+	 * Traitement du formulaire de connexion
+	 */
+	public function signIn()
+	{
+		$post = $this->get_POST();
+
+		if (isset($post) && $post['soumission'] === 'signIn') {
+			$this->set_SESSION('postIn', $post);
+
+			if (!empty($post['pseudo']) && !empty($post['password'])) {
+				$pseudo = $post['pseudo'];
+				$password = $post['password'];
+
+				$user = new Model;
+				$user = $user->select('*','user','pseudo',$pseudo,'','');
+				$user = $user->fetch();
+
+				if ($user !== false) {
+					if ($user['token'] === NULL) {
+						if (password_verify($password, $user['password'])) {
+							unset($_SESSION['postIn']);
+							$this->set_SESSION('user',$user);
+							$this->set_SESSION('msgSuccessSignIn','Vous êtes connecté.');
+							header('Location: ?action=home');
+							die;
+						} else {
+							$this->set_SESSION('msgErrorSignIn','Le mot de passe est incorrect.');
+							header('Location: ?action=sign');
+							die;
+						}
+						
+					} else {
+						$this->set_SESSION('msgErrorSignIn','Ce compte est en attente de validation');
+						header('Location: ?action=sign');
+						die;
+					}
+					
+				} else {
+					$this->set_SESSION('msgErrorSignIn','Ce compte n\'existe pas.');
+					header('Location: ?action=sign');
+					die;
+				}
+				
+			} else {
+				$this->set_SESSION('msgErrorSignIn', 'Certain champ ne sont pas remplis.');
+				header('Location: ?action=sign');
+				die;
+			}
 		}
 	}
 
