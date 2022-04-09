@@ -16,7 +16,7 @@ class BlogController extends Controller
 	public function blog()
 	{
 		$posts = new Model;
-		$posts = $posts->select('*','post','','','','');
+		$posts = $posts->select('*','post','','','createDatePost DESC','');
 		require 'view/front/blog.php';
 	}
 
