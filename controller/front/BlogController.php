@@ -2,6 +2,7 @@
 namespace controller\front;
 
 use controller\controller;
+use model\Model;
 
 /**
  * Traitement de la page blog.php & post-view.php
@@ -14,6 +15,8 @@ class BlogController extends Controller
 	 */
 	public function blog()
 	{
+		$posts = new Model;
+		$posts = $posts->select('*','post','','','','');
 		require 'view/front/blog.php';
 	}
 

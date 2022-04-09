@@ -11,7 +11,6 @@ class HomeController extends Controller
 	
 	public function home()
 	{
-		$post = $this->get_SESSION('post');
 		$errorContact = $this->get_SESSION('msgErrorContact');
 		$successContact = $this->get_SESSION('msgSuccessContact');
 		$successSignIn = $this->get_SESSION('msgSuccessSignIn');
