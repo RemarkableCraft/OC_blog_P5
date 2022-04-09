@@ -21,9 +21,9 @@ class Model extends DbModel
 		$db = $this->dbConnect();
 
 		if ($table === 'post') {
-			$fk = ' LEFT JOIN user ON autor = user.id ';
+			$fk = ' LEFT JOIN user ON autorPost = user.idUser ';
 		} elseif ($table === 'comment') {
-			$fk = ' LEFT JOIN user ON autor = user.id LEFT JOIN post ON post = post.id ';
+			$fk = ' LEFT JOIN user ON autorComment = user.idUser LEFT JOIN post ON postComment = post.idPost ';
 		} else {
 			$fk = '';
 		}

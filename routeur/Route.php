@@ -21,9 +21,9 @@ class Route extends Superglobals
 					$home->home();
 					break;
 
-				case 'sign':
-					$sign = new SignController;
-					$sign->sign();
+				case 'contact':
+					$contact = new ContactController;
+					$contact->contact();
 					break;
 
 				case 'blog':
@@ -36,9 +36,9 @@ class Route extends Superglobals
 					$post->post();
 					break;
 
-				case 'contact':
-					$contact = new ContactController;
-					$contact->contact();
+				case 'sign':
+					$sign = new SignController;
+					$sign->sign();
 					break;
 
 				case 'signUp':
@@ -47,7 +47,7 @@ class Route extends Superglobals
 					break;
 
 				case 'valid':
-					if (isset($get['token'])) {
+					if (isset($get['token']) && isset($get['pseudo'])) {
 						$valid = new SignController;
 						$valid->valid();
 						break;
@@ -69,10 +69,6 @@ class Route extends Superglobals
 				case 'signOut':
 					$signOut = new SignController;
 					$signOut->signOut();
-					break;
-
-				case '404':
-					http_response_code(404);
 					break;
 					
 				default:
