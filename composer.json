@@ -1,17 +1,17 @@
 {
-    "name": "toshiba/oc_blog_p5",
-    "description": "Création d'un blog pour la formation OpenclassRooms - Structure en MVC",
-    "type": "project",
-    "autoload": {
-        "psr-4": {
-            "Toshiba\\OcBlogP5\\": "src/"
-        }
-    },
-    "authors": [
-        {
-            "name": "RemarkableCraft",
-            "email": "masseestelle@gmail.com"
-        }
-    ],
-    "minimum-stability": "stable"
+	"name": "toshiba/oc_blog_p5",
+	"description": "Création d'un blog pour la formation OpenclassRooms - Structure en MVC",
+	"type": "project",
+	"autoload": {
+		"psr-4": {
+			"Toshiba\\OcBlogP5\\": "src/"
+		}
+	},
+	"authors": [
+		{
+			"name": "RemarkableCraft",
+			"email": "masseestelle@gmail.com"
+		}
+	],
+	"minimum-stability": "stable"
 }

@@ -1,2 +1,2 @@
-# redirection de la page 404
 ErrorDocument 404 http://openclassrooms/OC_blog_P5/view/404.php
+# redirection de la page 404
