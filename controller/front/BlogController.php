@@ -33,6 +33,9 @@ class BlogController extends Controller
 		$post = $post->fetch();
 
 		if ($post !== false) {
+			$session = $this->get_SESSION();
+			$errorComment = $this->get_SESSION('msgErrorComment');
+			$successComment = $this->get_SESSION('msgSuccessComment');
 			require 'view/front/post-view.php';
 		} else {
 			http_response_code(404);

@@ -20,6 +20,7 @@ class SignController extends Controller
 			header('Location: ?action=home');
 			die;
 		} else {
+			$server = $this->get_SERVER();
 			$postUp = $this->get_SESSION('postUp');
 			$postIn = $this->get_SESSION('postIn');
 			$errorSignUp = $this->get_SESSION('msgErrorSignUp');
@@ -289,10 +290,11 @@ class SignController extends Controller
 				if ($user !== false) {
 					if ($user['token'] === NULL) {
 						if (password_verify($password, $user['password'])) {
+							$lien = $post['lien'];
 							unset($_SESSION['postIn']);
 							$this->set_SESSION('user',$user);
 							$this->set_SESSION('msgSuccessSignIn','Vous êtes connecté.');
-							header('Location: ?action=home');
+							header('Location: '.$lien);
 							die;
 						} else {
 							$this->set_SESSION('msgErrorSignIn','Le mot de passe est incorrect.');
@@ -323,9 +325,10 @@ class SignController extends Controller
 	 */
 	public function signOut()
 	{
+		$lien = $this->get_SERVER('HTTP_REFERER');
 		unset($_SESSION['user']);
 		$this->set_SESSION('msgSuccessSignIn','Vous êtes déconnecté.');
-		header('Location: ?action=home');
+		header('Location: '.$lien);
 		die;
 	}
 

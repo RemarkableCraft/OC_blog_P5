@@ -37,6 +37,13 @@
 </head>
 
 <body>
+	<?php if (isset($successSignIn) && !empty($successSignIn)): ?>
+		<div class="toast fixed-top m-5 bg-success text-white bg-opacity-50" role="alert" aria-live="assertive" aria-atomic="true">
+		  <div class="toast-body fs-5">
+		    <?= $successSignIn ?>
+		  </div>
+		</div>
+	<?php endif ?>
 	<!-- ======= Hero Section ======= -->
 	<?php if (isset($hero) && $hero === "true") {
 		include 'template/_hero-section.php';
@@ -86,3 +93,10 @@
 
 </body>
 </html>
+
+<?php
+	unset($_SESSION['msgErrorSignUp']);
+	unset($_SESSION['msgSuccessSignUp']);
+	unset($_SESSION['msgErrorSignIn']);
+	unset($_SESSION['msgSuccessSignIn']);
+?>

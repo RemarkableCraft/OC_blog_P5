@@ -1,9 +1,9 @@
-<?php $titlePage = "Titre article"; ?>
+<?php $titlePage = $post['titlePost']; ?>
 
 <?php $hero = "false"; ?>
 
 <?php ob_start(); ?>
-  <main id="main" data-aos="fade-up">
+  <main id="main">
     <!-- ======= Breadcrumbs ======= -->
     <?php include 'view/template/_breadcrumbs.php'; ?>
     <!-- End Breadcrumbs -->
@@ -13,5 +13,10 @@
     <!-- End Portfolio Details Section -->
   </main>
 <?php $main = ob_get_clean(); ?>
+
+<?php
+	unset($_SESSION['msgErrorComment']);
+	unset($_SESSION['msgSuccessComment']);
+?>
 
 <?php require 'view/template.php'; ?>

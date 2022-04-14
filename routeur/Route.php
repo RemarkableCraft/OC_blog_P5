@@ -3,7 +3,7 @@ namespace routeur;
 
 use core\Superglobals;
 use controller\{Controller};
-use controller\front\{HomeController, SignController, BlogController, ContactController};
+use controller\front\{HomeController, SignController, BlogController, ContactController, CommentController};
 
 /**
  * 
@@ -39,7 +39,12 @@ class Route extends Superglobals
 					} else {
 						http_response_code(404);
 						break;
-					}					
+					}
+
+				case 'comment':
+					$comment = new CommentController;
+					$comment->comment();
+					break;
 
 				case 'sign':
 					$sign = new SignController;
@@ -75,7 +80,7 @@ class Route extends Superglobals
 					$signOut = new SignController;
 					$signOut->signOut();
 					break;
-					
+
 				default:
 					http_response_code(404);
 					break;
@@ -86,4 +91,3 @@ class Route extends Superglobals
 		}
 	}
 }
-
