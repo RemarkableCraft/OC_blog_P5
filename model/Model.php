@@ -69,7 +69,7 @@ class Model extends DbModel
 			return $req;
 		} elseif ($table === 'post') {
 			$req = $db->prepare
-			('INSERT INTO post(title, chapo, content, image, autor, createDate)
+			('INSERT INTO post(titlePost, chapoPost, contentPost, imagePost, autorPost, createDatePost)
 				VALUES(?, ?, ?, ?, ?, NOW())');
 
 			$req = $req->execute(array($value[0], $value[1], $value[2], $value[3], $value[4]));
@@ -77,7 +77,7 @@ class Model extends DbModel
 			return $req;
 		} elseif ($table === 'comment') {
 			$req = $db->prepare
-			('INSERT INTO comment(content, autor, post, createDate)
+			('INSERT INTO comment(contentComment, autorComment, postComment, createDateComment)
 				VALUES(?, ?, ?, NOW())');
 
 			$req = $req->execute(array($value[0], $value[1], $value[2]));
@@ -91,18 +91,14 @@ class Model extends DbModel
 	public function update($table, $set, $condition, $value)
 	{
 		$db = $this->dbConnect();
+		$req = $db->prepare
+		('UPDATE '.$table.
+			' SET '.$set.
+			' WHERE '.$condition.'=?
+		');
 
-		if ($table = 'user') {
-			$req = $db->prepare
-			('UPDATE '.$table.
-				' SET '.$set.
-				' WHERE '.$condition.'=?
-			');
+		$req = $req->execute(array($value));
 
-			$req = $req->execute(array($value));
-
-			return $req;
-		}
-		
+		return $req;
 	}
 }

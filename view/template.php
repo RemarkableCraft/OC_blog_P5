@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
 	<meta charset="utf-8">
@@ -37,10 +37,17 @@
 </head>
 
 <body>
+	<?php if (isset($successSignIn) && !empty($successSignIn)): ?>
+		<div class="toast fixed-top m-5 bg-success text-white bg-opacity-50" role="alert" aria-live="assertive" aria-atomic="true">
+		  <div class="toast-body fs-5">
+		    <?= $successSignIn ?>
+		  </div>
+		</div>
+	<?php endif ?>
 	<!-- ======= Hero Section ======= -->
 	<?php if (isset($hero) && $hero === "true") {
 		include 'template/_hero-section.php';
-	} ?>
+	}?>
 	<!-- End Hero -->
 
 	<!-- ======= Header ======= -->
@@ -68,13 +75,14 @@
 	<!-- Template Main JS File -->
 	<script src="public/assets/js/knight.js"></script>
 
-	<!-- affichage des messages 'required' -->
+	<!-- Afficher les messages 'required' -->
 	<script src="public/assets/js/validationForm.js"></script>
 
 	<!-- Vérifier en temps réel la bonne syntax du mot de passe
 	---- & l'option mot de passe visible ou caché -->
 	<script src="public/assets/js/validationPassword.js"></script>
 
+	<!-- Afficher le toast -->
 	<script>
 		window.onload = (event) => {
 			let myAlert = document.querySelector('.toast');
@@ -84,5 +92,11 @@
 	</script>
 
 </body>
-
 </html>
+
+<?php
+	unset($_SESSION['msgErrorSignUp']);
+	unset($_SESSION['msgSuccessSignUp']);
+	unset($_SESSION['msgErrorSignIn']);
+	unset($_SESSION['msgSuccessSignIn']);
+?>

@@ -17,6 +17,12 @@
 				<a href="#" class="linkedin" target="_blank"><i class="bx bxl-linkedin"></i></a>
 			</div>
 
+			<?php if (isset($session['user']) && !empty($session['user']) && $session['user']['role'] === 'admin'): ?>
+				<div class="mt-3">
+					<a href="#" class="fs-5"><strong>Dashboard</strong></a>
+				</div>
+			<?php endif ?>
+
 		</div>
 	</div>
 

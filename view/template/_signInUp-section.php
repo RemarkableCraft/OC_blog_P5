@@ -110,6 +110,8 @@
 					<?php endif ?>
 
 					<div class="mt-3 form-group">
+						<input type="hidden" name="lien" value="<?= $server['HTTP_REFERER'] ?>">
+
 						<input type="text" name="pseudo" id="pseudo" class="form-control" placeholder="Pseudo" required value="<?php if (isset($postIn) && !empty($postIn)) {echo $postIn['pseudo'];} ?>">
 						<div class="invalid-feedback">Ton pseudo c'est le néant?</div><!-- message required -->
 					</div><!-- pseudo -->

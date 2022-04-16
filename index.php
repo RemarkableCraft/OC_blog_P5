@@ -6,9 +6,10 @@ session_start();
  */
 function autoload($class)
 {
-	require_once $class . '.php';
+	require_once $class.'.php';
 }
 spl_autoload_register('autoload');
+
 
 use routeur\Route;
 
