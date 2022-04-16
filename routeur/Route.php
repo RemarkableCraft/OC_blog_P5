@@ -46,6 +46,16 @@ class Route extends Superglobals
 					$comment->comment();
 					break;
 
+				case 'validComment':
+					if (isset($get['id']) && !empty($get['id'])) {
+						$validComment = new CommentController;
+						$validComment->validComment();
+						break;
+					} else {
+						http_response_code(404);
+						break;
+					}
+
 				case 'sign':
 					$sign = new SignController;
 					$sign->sign();

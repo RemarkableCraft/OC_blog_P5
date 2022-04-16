@@ -91,18 +91,14 @@ class Model extends DbModel
 	public function update($table, $set, $condition, $value)
 	{
 		$db = $this->dbConnect();
+		$req = $db->prepare
+		('UPDATE '.$table.
+			' SET '.$set.
+			' WHERE '.$condition.'=?
+		');
 
-		if ($table = 'user') {
-			$req = $db->prepare
-			('UPDATE '.$table.
-				' SET '.$set.
-				' WHERE '.$condition.'=?
-			');
+		$req = $req->execute(array($value));
 
-			$req = $req->execute(array($value));
-
-			return $req;
-		}
-		
+		return $req;
 	}
 }

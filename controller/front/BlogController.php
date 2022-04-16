@@ -32,6 +32,9 @@ class BlogController extends Controller
 		$post = $post->select('*','post','idPost',$idPost,'','');
 		$post = $post->fetch();
 
+		$comments = new Model;
+		$comments = $comments->select('*','comment','postComment',$idPost,'createDateComment ASC','');
+
 		if ($post !== false) {
 			$session = $this->get_SESSION();
 			$errorComment = $this->get_SESSION('msgErrorComment');
