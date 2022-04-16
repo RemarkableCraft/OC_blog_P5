@@ -13,13 +13,13 @@
 			</div>
 
 			<div class="social-links">
-				<a href="#" class="facebook" target="_blank"><i class="bx bxl-facebook"></i></a>
-				<a href="#" class="linkedin" target="_blank"><i class="bx bxl-linkedin"></i></a>
+				<a href="#" target="_blank"><i class="bx bxl-facebook"></i></a>
+				<a href="#" target="_blank"><i class="bx bxl-linkedin"></i></a>
 			</div>
 
 			<?php if (isset($session['user']) && !empty($session['user']) && $session['user']['role'] === 'admin'): ?>
 				<div class="mt-3">
-					<a href="#" class="fs-5"><strong>Dashboard</strong></a>
+					<a href="?action=admin" class="fs-5"><strong>Dashboard</strong></a>
 				</div>
 			<?php endif ?>
 

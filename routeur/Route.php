@@ -4,6 +4,7 @@ namespace routeur;
 use core\Superglobals;
 use controller\{Controller};
 use controller\front\{HomeController, SignController, BlogController, ContactController, CommentController};
+use controller\back\{AdminController};
 
 /**
  * 
@@ -89,6 +90,11 @@ class Route extends Superglobals
 				case 'signOut':
 					$signOut = new SignController;
 					$signOut->signOut();
+					break;
+
+				case 'admin':
+					$admin = new AdminController;
+					$admin->admin();
 					break;
 
 				default:
