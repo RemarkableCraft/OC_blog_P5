@@ -96,4 +96,14 @@ abstract class Superglobals
 			return $this->_SERVER;
 		}
 	}
+
+
+	public function unset_SESSION(array $key)
+	{
+		if (isset($key) && !empty($key)) {
+			foreach ($key as $value) {
+				unset($_SESSION[$value]);
+			}
+		}
+	}
 }

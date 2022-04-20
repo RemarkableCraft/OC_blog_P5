@@ -95,8 +95,5 @@
 </html>
 
 <?php
-	unset($_SESSION['msgErrorSignUp']);
-	unset($_SESSION['msgSuccessSignUp']);
-	unset($_SESSION['msgErrorSignIn']);
-	unset($_SESSION['msgSuccessSignIn']);
+	$this->unset_SESSION(['msgErrorSignIn','msgSuccessSignIn','msgErrorSignUp','msgSuccessSignUp']);
 ?>

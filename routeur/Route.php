@@ -97,6 +97,21 @@ class Route extends Superglobals
 					$admin->admin();
 					break;
 
+				case 'createPost':
+					$createPost = new AdminController;
+					$createPost->createPost();
+					break;
+
+				case 'editPost':
+					$editPost = new AdminController;
+					$editPost->editPost();
+					break;
+
+				case 'deletePost':
+					$deletePost = new AdminController;
+					$deletePost->deletePost();
+					break;
+
 				default:
 					http_response_code(404);
 					break;

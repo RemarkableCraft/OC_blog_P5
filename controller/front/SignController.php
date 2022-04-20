@@ -333,7 +333,7 @@ class SignController extends Controller
 	}
 
 
-  function verif($value)
+  private function verif($value)
 	{
 		$verif = htmlentities($value);
 		$verif = trim($verif);

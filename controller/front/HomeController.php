@@ -14,6 +14,8 @@ class HomeController extends Controller
 	 */
 	public function home()
 	{
+		$session = $this->get_SESSION();
+		
 		$posts = new Model;
 		$posts = $posts->select('*','post','','','createDatePost DESC','6');
 
