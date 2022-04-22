@@ -100,7 +100,7 @@ class ContactController extends Controller
 				$headers .= "Content-Transfer-Encoding: 8bit\n";
 
 				if (mail($to, $subject, $message, $headers)) {
-					unset($_SESSION['post']);
+					$this->unset_SESSION(['post']);
 					$this->set_SESSION("msgSuccessContact", "Votre mail est bien partie");
 					header('Location: ?action=home#contact');
 					die;

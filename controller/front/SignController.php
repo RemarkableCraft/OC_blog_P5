@@ -172,7 +172,7 @@ class SignController extends Controller
 						$headers .= "Content-Transfer-Encoding: 8bit\n";
 
 						if (mail($to, $subject, $message, $headers)) {
-							unset($_SESSION['postUp']);
+							$this->unset_SESSION(['postUp']);
 							$this->set_SESSION('msgSuccessSignUp', 'Votre compte est bien enregistré.<br>Vous allez recevoir un mail pour valider votre compte.');
 							header('Location: ?action=sign');
 							die;
@@ -291,7 +291,7 @@ class SignController extends Controller
 					if ($user['token'] === NULL) {
 						if (password_verify($password, $user['password'])) {
 							$lien = $post['lien'];
-							unset($_SESSION['postIn']);
+							$this->unset_SESSION(['postIn']);
 							$this->set_SESSION('user',$user);
 							$this->set_SESSION('msgSuccessSignIn','Vous êtes connecté.');
 							header('Location: '.$lien);
@@ -326,7 +326,7 @@ class SignController extends Controller
 	public function signOut()
 	{
 		$lien = $this->get_SERVER('HTTP_REFERER');
-		unset($_SESSION['user']);
+		$this->unset_SESSION(['user']);
 		$this->set_SESSION('msgSuccessSignIn','Vous êtes déconnecté.');
 		header('Location: '.$lien);
 		die;
