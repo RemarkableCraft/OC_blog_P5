@@ -37,7 +37,9 @@ class AdminController extends Controller
 	 */
 	public function createPost()
 	{
-		echo "create";
+		$session = $this->get_SESSION();
+		$POST = $this->get_POST();
+		require 'view/admin/create-editPost.php';
 	}
 
 
@@ -46,7 +48,13 @@ class AdminController extends Controller
 	 */
 	public function editPost()
 	{
-		echo "edit";
+		$session = $this->get_SESSION();
+		$idPost = $this->get_GET('id');
+
+		$post = new Model;
+		$post = $post->select('*','post','idPost',$idPost,'','');
+		$post = $post->fetch();
+		require 'view/admin/create-editPost.php';
 	}
 
 

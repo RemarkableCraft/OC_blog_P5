@@ -43,6 +43,9 @@
 .option-links {
   margin-top: 30px;
 }
+.option-links button {
+	background-color: transparent;
+}
 .option-links .edit {
   font-size: 18px;
   display: inline-block;

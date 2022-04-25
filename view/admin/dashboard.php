@@ -1,4 +1,4 @@
-<?php $titlePage = "Mon blog"; ?>
+<?php $titlePage = "Dashboard"; ?>
 
 <?php $hero = "false"; ?>
 

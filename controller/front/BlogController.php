@@ -29,8 +29,7 @@ class BlogController extends Controller
 	{
 		$session = $this->get_SESSION();
 
-		$get = $this->get_GET();
-		$idPost = $get['id'];
+		$idPost = $this->get_GET('id');
 
 		$post = new Model;
 		$post = $post->select('*','post','idPost',$idPost,'','');
