@@ -84,3 +84,13 @@
   color: #fff;
   text-decoration: none;
 }
+
+/* form article */
+/* mise en forme input radio image */
+.form-check {
+	min-width: 200px;
+}
+.form-check input:checked + label .img-featured {
+	cursor: pointer;
+	border: 2px solid olivedrab;
+}
