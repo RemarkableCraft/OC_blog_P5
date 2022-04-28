@@ -4,7 +4,7 @@
 		<div class="row gx-5">
 
 			<div class="col-lg-8" data-aos="fade-right">
-				<?= $post['contentPost'] ?>
+				<?= html_entity_decode($post['contentPost']) ?>
 			</div>
 
 			<div class="col-lg-4" data-aos="fade-left">
@@ -57,6 +57,14 @@
 							Connectez-vous pour laisser un commentaire
 						</div>
 					<?php endif ?>
+
+					<!--<?php if ($nbrComment === '0'): ?>
+						<p>Il n'y a pas de commentaire</p>
+					<?php elseif ($nbrComment === '1'): ?>
+						<p>Il y a 1 commentaire</p>
+					<?php else: ?>
+						<p>Il y a <?= $nbrComment ?> commentaires</p>
+					<?php endif ?> -->
 
 					<?php while($comment = $comments->fetch(PDO::FETCH_ASSOC)): ?>
 						<?php if (isset($session['user']) && !empty($session['user']) && $session['user']['role'] === 'admin'): ?>

@@ -15,6 +15,8 @@ class BlogController extends Controller
 	 */
 	public function blog()
 	{
+		$session = $this->get_SESSION();
+
 		$posts = new Model;
 		$posts = $posts->select('*','post','','','createDatePost DESC','');
 		require 'view/front/blog.php';
@@ -25,18 +27,22 @@ class BlogController extends Controller
 	 */
 	public function post()
 	{
-		$get = $this->get_GET();
-		$idPost = $get['id'];
+		$session = $this->get_SESSION();
+		$success = $this->get_SESSION('msgSuccess');
+		$error = $this->get_SESSION('msgError');
+
+		$idPost = $this->get_GET('id');
 
 		$post = new Model;
 		$post = $post->select('*','post','idPost',$idPost,'','');
 		$post = $post->fetch();
 
 		$comments = new Model;
-		$comments = $comments->select('*','comment','postComment',$idPost,'createDateComment ASC','');
+		$comments = $comments->select('*','comment','postComment',$idPost,'createDateComment DESC','');
+
+		//$nbrComment = $comments->rowCount();
 
 		if ($post !== false) {
-			$session = $this->get_SESSION();
 			$errorComment = $this->get_SESSION('msgErrorComment');
 			$successComment = $this->get_SESSION('msgSuccessComment');
 			require 'view/front/post-view.php';

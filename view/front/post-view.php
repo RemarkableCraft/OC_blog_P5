@@ -15,8 +15,7 @@
 <?php $main = ob_get_clean(); ?>
 
 <?php
-	unset($_SESSION['msgErrorComment']);
-	unset($_SESSION['msgSuccessComment']);
+	$this->unset_SESSION(['msgErrorComment','msgSuccessComment']);
 ?>
 
 <?php require 'view/template.php'; ?>

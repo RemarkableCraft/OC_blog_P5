@@ -11,8 +11,7 @@
 <?php $main = ob_get_clean(); ?>
 
 <?php
-	unset($_SESSION['msgErrorValid']);
-	unset($_SESSION['msgSuccessValid']);
+	$this->unset_SESSION(['msgErrorValid','msgSuccessValid']);
 ?>
 
 <?php require 'view/template.php'; ?>

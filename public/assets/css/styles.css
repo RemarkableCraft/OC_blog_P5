@@ -38,3 +38,59 @@
 .bg-comment {
 	background: #D5E6D4;
 }
+
+/* affichage des option dans le dashboard */
+.option-links {
+  margin-top: 30px;
+}
+.option-links button {
+	background-color: transparent;
+}
+.option-links .edit {
+  font-size: 18px;
+  display: inline-block;
+  color: darkseagreen;
+  line-height: 1;
+  padding: 8px 0;
+  margin-right: 4px;
+  border: 1px solid darkseagreen;
+  border-radius: 50%;
+  text-align: center;
+  width: 36px;
+  height: 36px;
+  transition: 0.3s;
+}
+.option-links .delete {
+  font-size: 18px;
+  display: inline-block;
+  color: indianred;
+  line-height: 1;
+  padding: 8px 0;
+  margin-right: 4px;
+  border: 1px solid indianred;
+  border-radius: 50%;
+  text-align: center;
+  width: 36px;
+  height: 36px;
+  transition: 0.3s;
+}
+.option-links .edit:hover {
+  background: darkseagreen;
+  color: #fff;
+  text-decoration: none;
+}
+.option-links .delete:hover {
+  background: indianred;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* form article */
+/* mise en forme input radio image */
+.form-check {
+	min-width: 200px;
+}
+.form-check input:checked + label .img-featured {
+	cursor: pointer;
+	border: 2px solid olivedrab;
+}

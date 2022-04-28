@@ -21,58 +21,25 @@ class CommentController extends Controller
 
 			$contentComment = $this->verif($comment['message']);
 
-			$value = $contentComment.','.$comment['autor'].','.$comment['post'];
+			$value = [$contentComment,$comment['autor'],$comment['post']];
 
 			$newComment = new Model;
 			$newComment = $newComment->insert('comment', $value);
 			if ($newComment === true) {
 				$lien = $this->get_SERVER('HTTP_REFERER');
-				$this->set_SESSION('msgSuccessComment', 'Votre message est bien enregistré, et est en attente de validation.');
+				$this->set_SESSION('msgSuccess', 'Votre message est bien enregistré, et est en attente de validation.');
 				header('Location: '.$lien);
 				die;
 			} else {
 				$lien = $this->get_SERVER('HTTP_REFERER');
-				$this->set_SESSION('msgErrorComment', 'Votre commentaire ne sait pas enregistré.<br>Veuillez recommencer.');
+				$this->set_SESSION('msgError', 'Votre commentaire ne sait pas enregistré.<br>Veuillez recommencer.');
 				header('Location: '.$lien);
 				die;
 			}
 		} else {
 			$lien = $this->get_SERVER('HTTP_REFERER');
-			$this->set_SESSION('msgErrorComment', 'Erreur champ vide.');
+			$this->set_SESSION('msgError', 'Erreur champ vide.');
 			header('Location: '.$lien);
-			die;
-		}
-	}
-
-
-	/**
-	 * validation des commentaires par l'admin
-	 */
-	public function validComment()
-	{
-		$idComment = $this->get_GET('id');
-
-		$comment = new Model;
-		$comment = $comment->select('*','comment','idComment',$idComment,'','');
-		$comment = $comment->fetch();
-
-		if ($comment !== false) {
-			$validComment = new Model;
-			$validComment = $validComment->update('comment','statusComment=\'0\'','idComment',$idComment);
-			if ($validComment !== false) {
-				$lien = $this->get_SERVER('HTTP_REFERER');
-				$this->set_SESSION('msgSuccessComment','Le commentaire à bien été validé.');
-				header('Location: '.$lien);
-				die;
-			} else {
-				$lien = $this->get_SERVER('HTTP_REFERER');
-				$this->set_SESSION('msgErrorComment','Problème, le commentaire n\'a pas été validé.');
-				header('Location: '.$lien);
-				die;
-			}
-			
-		} else {
-			http_response_code(404);
 			die;
 		}
 	}

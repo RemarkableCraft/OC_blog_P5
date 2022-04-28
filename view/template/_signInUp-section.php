@@ -7,7 +7,53 @@
 
 		<div class="row">
 
-			<div class="col-lg-6 border-end pe-lg-5">
+			<div class="col-lg-6 mt-5 pe-lg-5">
+				<!-- ======= Connexion Form ======= -->
+				<form action="?action=signIn" method="POST" role="form" class="needs-validation" data-aos="fade-left" novalidate>
+					<div class="row text-center">
+						<h3>Connexion</h3>
+					</div>
+
+					<?php if (isset($errorSignIn) && !empty($errorSignIn)): ?>
+						<div class="alert alert-danger" role="alert">
+							<?= $errorSignIn ?>
+						</div>
+					<?php endif ?>
+
+					<?php if (isset($successSignIn) && !empty($successSignIn)): ?>
+						<div class="alert alert-success" role="alert">
+							<?= $successSignIn ?>
+						</div>
+					<?php endif ?>
+
+					<div class="mt-3 form-group">
+						<input type="hidden" name="lien" value="<?= $server['HTTP_REFERER'] ?>">
+
+						<input type="text" name="pseudo" id="pseudo" class="form-control" placeholder="Pseudo" required value="<?php if (isset($postIn) && !empty($postIn)) {echo $postIn['pseudo'];} ?>">
+						<div class="invalid-feedback">Ton pseudo c'est le néant?</div><!-- message required -->
+					</div><!-- pseudo -->
+
+					<div class="mt-3 form-group input-group">
+						<input type="password" name="password" id="password" class="form-control" placeholder="Mot de passe" required>
+
+						<div class="toggle-password">
+							<button class="btn btn-secondary eye rounded-0 rounded-end" type="button"><i class="bi bi-eye"></i></button>
+							<button class="btn btn-secondary eye-slash rounded-0 rounded-end" type="button"><i class="bi bi-eye-slash"></i></button>
+						</div>
+
+						<div class="invalid-feedback">Tu n'as pas oublié quelque chose.</div><!-- message required -->
+					</div><!-- password -->
+
+					<div class="mt-3 form-group">
+						<div class="text-center">
+							<button type="submit" name="soumission" value="signIn" class="btn-get-started">Se Connecter</button>
+						</div>
+					</div>
+				</form>
+				<!-- END Connexion Form -->
+			</div>
+
+			<div class="col-lg-6 mt-5 ps-lg-5">
 				<!-- ======= Inscription Form ======= -->
 				<form action="?action=signUp" method="POST" role="form" class="needs-validation" data-aos="fade-right" novalidate>
 					<div class="row text-center">
@@ -88,52 +134,6 @@
 					</div>
 				</form>
 				<!-- END Inscription Form -->
-			</div>
-
-			<div class="col-lg-6 mt-5 mt-lg-0 ps-lg-5">
-				<!-- ======= Connexion Form ======= -->
-				<form action="?action=signIn" method="POST" role="form" class="needs-validation" data-aos="fade-left" novalidate>
-					<div class="row text-center">
-						<h3>Connexion</h3>
-					</div>
-
-					<?php if (isset($errorSignIn) && !empty($errorSignIn)): ?>
-						<div class="alert alert-danger" role="alert">
-							<?= $errorSignIn ?>
-						</div>
-					<?php endif ?>
-
-					<?php if (isset($successSignIn) && !empty($successSignIn)): ?>
-						<div class="alert alert-success" role="alert">
-							<?= $successSignIn ?>
-						</div>
-					<?php endif ?>
-
-					<div class="mt-3 form-group">
-						<input type="hidden" name="lien" value="<?= $server['HTTP_REFERER'] ?>">
-
-						<input type="text" name="pseudo" id="pseudo" class="form-control" placeholder="Pseudo" required value="<?php if (isset($postIn) && !empty($postIn)) {echo $postIn['pseudo'];} ?>">
-						<div class="invalid-feedback">Ton pseudo c'est le néant?</div><!-- message required -->
-					</div><!-- pseudo -->
-
-					<div class="mt-3 form-group input-group">
-						<input type="password" name="password" id="password" class="form-control" placeholder="Mot de passe" required>
-
-						<div class="toggle-password">
-							<button class="btn btn-secondary eye rounded-0 rounded-end" type="button"><i class="bi bi-eye"></i></button>
-							<button class="btn btn-secondary eye-slash rounded-0 rounded-end" type="button"><i class="bi bi-eye-slash"></i></button>
-						</div>
-
-						<div class="invalid-feedback">Tu n'as pas oublié quelque chose.</div><!-- message required -->
-					</div><!-- password -->
-
-					<div class="mt-3 form-group">
-						<div class="text-center">
-							<button type="submit" name="soumission" value="signIn" class="btn-get-started">Se Connecter</button>
-						</div>
-					</div>
-				</form>
-				<!-- END Connexion Form -->
 			</div>
 		</div>
 	</div>

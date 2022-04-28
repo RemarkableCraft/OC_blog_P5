@@ -22,17 +22,17 @@ class ContactController extends Controller
 
 			// vérification champ par champ s'ils sont remplis
 			if (empty($post['name'])) {
-				$this->set_SESSION("msgErrorContact", "Le nom est vide");
+				$this->set_SESSION("msgError", "Le nom est vide");
 				header('Location: ?action=home#contact');
 				die;
 			}
 			if (empty($post['email'])) {
-				$this->set_SESSION("msgErrorContact", "Le mail est vide");
+				$this->set_SESSION("msgError", "Le mail est vide");
 				header('Location: ?action=home#contact');
 				die;
 			}
 			if (empty($post['message'])) {
-				$this->set_SESSION("msgErrorContact", "Le message est vide");
+				$this->set_SESSION("msgError", "Le message est vide");
 				header('Location: ?action=home#contact');
 				die;
 			}
@@ -100,12 +100,12 @@ class ContactController extends Controller
 				$headers .= "Content-Transfer-Encoding: 8bit\n";
 
 				if (mail($to, $subject, $message, $headers)) {
-					unset($_SESSION['post']);
-					$this->set_SESSION("msgSuccessContact", "Votre mail est bien partie");
+					$this->unset_SESSION(['post']);
+					$this->set_SESSION("msgSuccess", "Votre mail est bien partie");
 					header('Location: ?action=home#contact');
 					die;
 				} else {
-					$this->set_SESSION("msgErrorContact", "Problème avec l'envoi du message, veuillez recommencer");
+					$this->set_SESSION("msgError", "Problème avec l'envoi du message, veuillez recommencer");
 					header('Location: ?action=home#contact');
 					die;
 				}
@@ -113,7 +113,7 @@ class ContactController extends Controller
 
 			}
 		} else {
-			$this->set_SESSION("msgErrorContact", "Le formulaire est vide");
+			$this->set_SESSION("msgError", "Le formulaire est vide");
 			header('Location: ?action=home#contact');
 			die;
 		}

@@ -1,5 +1,4 @@
 <footer id="footer">
-
 	<div class="footer-top">
 
 		<div class="container">
@@ -13,13 +12,13 @@
 			</div>
 
 			<div class="social-links">
-				<a href="#" class="facebook" target="_blank"><i class="bx bxl-facebook"></i></a>
-				<a href="#" class="linkedin" target="_blank"><i class="bx bxl-linkedin"></i></a>
+				<a href="#" target="_blank"><i class="bx bxl-facebook"></i></a>
+				<a href="#" target="_blank"><i class="bx bxl-linkedin"></i></a>
 			</div>
 
 			<?php if (isset($session['user']) && !empty($session['user']) && $session['user']['role'] === 'admin'): ?>
 				<div class="mt-3">
-					<a href="#" class="fs-5"><strong>Dashboard</strong></a>
+					<a href="?action=admin" class="fs-5"><strong>Dashboard</strong></a>
 				</div>
 			<?php endif ?>
 
@@ -28,14 +27,14 @@
 
 	<div class="container footer-bottom clearfix">
 		<div class="copyright">
-			&copy; Copyright <strong><span>Knight</span></strong>. All Rights Reserved
+			Template de base, &copy; <strong><span>Knight</span></strong>. Tous les droits sont réservés.
 		</div>
 		<div class="credits">
 			<!-- All the links in the footer should remain intact. -->
 			<!-- You can delete the links only if you purchased the pro version. -->
 			<!-- Licensing information: https://bootstrapmade.com/license/ -->
 			<!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/knight-free-bootstrap-theme/ -->
-			Designed by <a href="https://bootstrapmade.com/" target="_blank">BootstrapMade</a>
+			Conçu par <a href="https://bootstrapmade.com/" target="_blank">BootstrapMade</a>
 		</div>
 	</div>
 </footer>

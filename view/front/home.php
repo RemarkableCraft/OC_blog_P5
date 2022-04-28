@@ -24,9 +24,7 @@
 <?php $main = ob_get_clean(); ?>
 
 <?php
-	unset($_SESSION['msgErrorContact']);
-	unset($_SESSION['msgSuccessContact']);
-	unset($_SESSION['msgSuccessSignIn']);
+	$this->unset_SESSION(['msgErrorContact','msgSuccessContact']);
 ?>
 
 <?php require 'view/template.php'; ?>

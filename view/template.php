@@ -28,6 +28,9 @@
 	<!-- Template Main CSS File -->
 	<link href="public/assets/css/styles.css" rel="stylesheet">
 
+	<!-- Include stylesheet -->
+	<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
 	<!-- =======================================================
 	* Template Name: Knight - v4.7.0
 	* Template URL: https://bootstrapmade.com/knight-free-bootstrap-theme/
@@ -37,13 +40,24 @@
 </head>
 
 <body>
-	<?php if (isset($successSignIn) && !empty($successSignIn)): ?>
+	<!-- ======= Message Popup ======= -->
+	<?php if (isset($success) && !empty($success)): ?>
 		<div class="toast fixed-top m-5 bg-success text-white bg-opacity-50" role="alert" aria-live="assertive" aria-atomic="true">
 		  <div class="toast-body fs-5">
-		    <?= $successSignIn ?>
+		    <?= $success ?>
 		  </div>
 		</div>
 	<?php endif ?>
+
+	<?php if (isset($error) && !empty($error)): ?>
+		<div class="toast fixed-top m-5 bg-danger text-white bg-opacity-50" role="alert" aria-live="assertive" aria-atomic="true">
+		  <div class="toast-body fs-5">
+		    <?= $error ?>
+		  </div>
+		</div>
+	<?php endif ?>
+	<!-- End Message Popup -->
+
 	<!-- ======= Hero Section ======= -->
 	<?php if (isset($hero) && $hero === "true") {
 		include 'template/_hero-section.php';
@@ -91,12 +105,37 @@
 		}
 	</script>
 
+	<!-- Include the Quill library -->
+	<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+	<!-- Initialize Quill editor for formPost -->
+	<script>
+	  var quill = new Quill('#editor', {
+	  	placeholder: 'Écrivez votre article.',
+	    theme: 'snow'
+	  });
+
+	  let editor = document.getElementById('editor');
+
+	  let button = document.getElementById('soumission');
+	  let text = document.getElementById('contentPost');
+
+	  button.addEventListener('click',function() {
+	  	if (editor.children[0].innerHTML.replace(/(<([^>]+)>)/ig, "").length == 0) {
+	  		document.getElementById('invalid-feedback').style.display = 'block';
+	  		editor.style.border = '1px solid red';
+	  		editor.style.borderRadius = '0';
+	  		editor.classList.add('form-control');
+	  		editor.classList.add('is-invalid');
+	  	} else {
+	  		text.value = editor.children[0].innerHTML;
+	  	}
+	  });
+	</script>
+
 </body>
 </html>
 
 <?php
-	unset($_SESSION['msgErrorSignUp']);
-	unset($_SESSION['msgSuccessSignUp']);
-	unset($_SESSION['msgErrorSignIn']);
-	unset($_SESSION['msgSuccessSignIn']);
+	$this->unset_SESSION(['msgSuccess','msgError']);
 ?>
