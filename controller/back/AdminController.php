@@ -17,12 +17,15 @@ class AdminController extends Controller
 		$session = $this->get_SESSION();
 
 		if (isset($session['user']) && !empty($session['user']) && $session['user']['role'] === 'admin') {
+
+			$success = $this->get_SESSION('msgSuccess');
+			$error = $this->get_SESSION('msgError');
+
 			$posts = new Model;
 			$posts = $posts->select('*','post','','','createDatePost DESC','');
 
 			$comments = new Model;
 			$comments = $comments->select('*','comment','statusComment','1','createDateComment DESC','');
-			$comment = $comments->fetch();
 
 			require 'view/admin/dashboard.php';
 		} else {
@@ -38,8 +41,56 @@ class AdminController extends Controller
 	public function createPost()
 	{
 		$session = $this->get_SESSION();
+
+		$user = $this->get_SESSION('user');
+		if (isset($user) && !empty($user) && $user['role'] === 'admin') {
+			$POST = $this->get_SESSION('editPost');
+			$error = $this->get_SESSION('msgError');
+			$success = $this->get_SESSION('msgSuccess');
+			require 'view/admin/create-editPost.php';
+		} else {
+			http_response_code(404);
+			die;
+		}
+	}
+
+
+	/**
+	 * Traitement du formulaire de création d'article
+	 */
+	public function addPost()
+	{
 		$POST = $this->get_POST();
-		require 'view/admin/create-editPost.php';
+		if (isset($POST) && !empty($POST['titlePost']) && !empty($POST['chapoPost']) && !empty($POST['contentPost']) && !empty($POST['imagePost'])) {
+			$titlePost = $this->verif($POST['titlePost']);
+			$chapoPost = $this->verif($POST['chapoPost']);
+			$contentPost = $this->verif($POST['contentPost']);
+			$imagePost = $this->verif($POST['imagePost']);
+			$user = $this->get_SESSION('user');
+			$autorPost = $user['idUser'];
+			
+			$value = [$titlePost,$chapoPost,$contentPost,$imagePost,$autorPost];
+			
+			$addPost = new Model;
+			$addPost = $addPost->insert('post', $value);
+			
+			if ($addPost === true) {
+				$this->unset_SESSION(['editPost']);
+				$this->set_SESSION('msgSuccess','L\'article à bien été enregistré.');
+				header('Location: ?action=createPost');
+				die;
+			} else {
+				$this->set_SESSION('editPost', $POST);
+				$this->set_SESSION('msgError','Problème avec l\'enregistrement de l\'article.');
+				header('Location: ?action=createPost');
+				die;
+			}
+		} else {
+			$this->set_SESSION('editPost', $POST);
+			$this->set_SESSION('msgError','Veuillez remplir tous les champs du formulaire.');
+			header('Location: ?action=createPost');
+			die;
+		}
 	}
 
 
@@ -50,11 +101,62 @@ class AdminController extends Controller
 	{
 		$session = $this->get_SESSION();
 		$idPost = $this->get_GET('id');
+		$POST = $this->get_SESSION('updatePost');
 
-		$post = new Model;
-		$post = $post->select('*','post','idPost',$idPost,'','');
-		$post = $post->fetch();
-		require 'view/admin/create-editPost.php';
+		$user = $this->get_SESSION('user');
+		if (isset($user) && !empty($user) && $user['role'] === 'admin') {
+			$POST = $this->get_SESSION('editPost');
+			$error = $this->get_SESSION('msgError');
+			$success = $this->get_SESSION('msgSuccess');
+
+			$post = new Model;
+			$post = $post->select('*','post','idPost',$idPost,'','');
+			$post = $post->fetch();
+			require 'view/admin/create-editPost.php';
+		} else {
+			http_response_code(404);
+			die;
+		}
+	}
+
+
+	/**
+	 * traitement du formulaire de modification d'article
+	 */
+	public function updatePost()
+	{
+		$POST = $this->get_POST();
+		$idPost = $this->get_GET('id');
+
+		if (isset($POST) && !empty($POST['titlePost']) && !empty($POST['chapoPost']) && !empty($POST['contentPost']) && !empty($POST['imagePost'])) {
+			$titlePost = $this->verif($POST['titlePost']);
+			$chapoPost = $this->verif($POST['chapoPost']);
+			$contentPost = $this->verif($POST['contentPost']);
+			$imagePost = $this->verif($POST['imagePost']);
+			$user = $this->get_SESSION('user');
+			$autorPost = $user['idUser'];
+
+			$set = 'titlePost="'.$titlePost.'", chapoPost="'.$chapoPost.'", contentPost="'.$contentPost.'", imagePost="'.$imagePost.'", autorPost="'.$autorPost.'", updateDatePost=NOW()';
+
+			$updatePost = new Model;
+			$updatePost = $updatePost->update('post',$set,'idPost',$idPost);
+			if ($updatePost !== false) {
+				$this->set_SESSION('msgSuccess','Article modifié.');
+				header('Location: ?action=editPost&id='.$idPost);
+				die;
+			} else {
+				$this->set_SESSION('updatePost', $POST);
+				$this->set_SESSION('msgError','Article non modifié.');
+				header('Location: ?action=editPost&id='.$idPost);
+				die;
+			}
+			
+		} else {
+			$this->set_SESSION('updatePost', $POST);
+			$this->set_SESSION('msgError','Veuillez remplir tous les champs du formulaire.');
+			header('Location: ?action=editPost&id='.$idPost);
+			die;
+		}
 	}
 
 
@@ -63,6 +165,27 @@ class AdminController extends Controller
 	 */
 	public function deletePost()
 	{
-		echo "delete";
+		$idPost = $this->get_GET('id');
+
+		$deletePost = new Model;
+		$deletePost = $deletePost->delete('post','idPost',$idPost);
+
+		if ($deletePost === true) {
+			$this->set_SESSION('msgSuccess','Article supprimé');
+			header('Location: ?action=admin');
+			die;
+		} else {
+			$this->set_SESSION('msgError','Problème à la suppression de l\'article');
+			header('Location: ?action=admin');
+			die;
+		}
+	}
+
+
+  private function verif($value)
+	{
+		$verif = htmlentities($value);
+		$verif = trim($verif);
+		return $verif;
 	}
 }

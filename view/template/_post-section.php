@@ -4,7 +4,7 @@
 		<div class="row gx-5">
 
 			<div class="col-lg-8" data-aos="fade-right">
-				<?= $post['contentPost'] ?>
+				<?= html_entity_decode($post['contentPost']) ?>
 			</div>
 
 			<div class="col-lg-4" data-aos="fade-left">

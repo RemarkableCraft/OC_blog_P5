@@ -28,6 +28,8 @@ class BlogController extends Controller
 	public function post()
 	{
 		$session = $this->get_SESSION();
+		$success = $this->get_SESSION('msgSuccess');
+		$error = $this->get_SESSION('msgError');
 
 		$idPost = $this->get_GET('id');
 

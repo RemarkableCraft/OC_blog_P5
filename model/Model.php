@@ -53,10 +53,8 @@ class Model extends DbModel
 	}
 
 
-	public function insert(string $table, string $value)
+	public function insert(string $table, array $value)
 	{
-		$value = explode(',', $value);
-
 		$db = $this->dbConnect();
 
 		if ($table === 'user') {
@@ -64,7 +62,7 @@ class Model extends DbModel
 			('INSERT INTO user(name, surname, pseudo, email, password, token, createDate)
 				VALUES(?, ?, ?, ?, ?, ?, NOW())');
 
-			$req = $req->execute(array($value[0], $value[1], $value[2], $value[3], $value[4], $value[5]));
+			$req = $req->execute($value);
 
 			return $req;
 		} elseif ($table === 'post') {
@@ -72,7 +70,7 @@ class Model extends DbModel
 			('INSERT INTO post(titlePost, chapoPost, contentPost, imagePost, autorPost, createDatePost)
 				VALUES(?, ?, ?, ?, ?, NOW())');
 
-			$req = $req->execute(array($value[0], $value[1], $value[2], $value[3], $value[4]));
+			$req = $req->execute($value);
 
 			return $req;
 		} elseif ($table === 'comment') {
@@ -80,7 +78,7 @@ class Model extends DbModel
 			('INSERT INTO comment(contentComment, autorComment, postComment, createDateComment)
 				VALUES(?, ?, ?, NOW())');
 
-			$req = $req->execute(array($value[0], $value[1], $value[2]));
+			$req = $req->execute($value);
 
 			return $req;
 		}
@@ -97,6 +95,18 @@ class Model extends DbModel
 			' WHERE '.$condition.'=?
 		');
 
+		$req = $req->execute(array($value));
+
+		return $req;
+	}
+
+
+
+	public function delete($table, $condition, $value)
+	{
+		$db = $this->dbConnect();
+
+		$req = $db->prepare('DELETE FROM '.$table.' WHERE '.$condition.' = ?');
 		$req = $req->execute(array($value));
 
 		return $req;

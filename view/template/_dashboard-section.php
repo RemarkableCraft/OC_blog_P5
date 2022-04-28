@@ -44,7 +44,7 @@
 			      <td class="option-links">
 			      	<div class="d-flex">
 				      	<a href="?action=editPost&id=<?= $post['idPost'] ?>"class="edit"><i class="bi bi-pen"></i></a>
-				      	<a href="?action=deletePost"class="delete"><i class="bi bi-trash"></i></a>
+				      	<a href="?action=deletePost&id=<?= $post['idPost'] ?>"class="delete"><i class="bi bi-trash"></i></a>
 								<button class="edit" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $post['idPost'] ?>"><i class="bi bi-eye"></i></button>
 			      	</div>
 			      </td>
@@ -96,9 +96,7 @@
 			  </thead>
 
 			  <tbody>
-			  	<?php if (!$comment): ?>
-				  	<tr><td colspan="5" class="text-center">Il n'y a pas de nouveau commentaire</td></tr>
-			  	<?php else: ?>
+			  	<?php while ($comment = $comments->fetch(PDO::FETCH_ASSOC)): ?>
 				    <tr>
 				      <th scope="row"><?= $comment['idComment'] ?></th>
 				      <td><?= nl2br($comment['contentComment']) ?></td>
@@ -107,7 +105,7 @@
 				      <td><?= $this->dateToFrench($comment['createDateComment'],"d F Y H:h") ?></td>
 				      <td class="option-links"><a href="?action=post&id=<?= $comment['postComment'] ?>" class="edit" target="_blank"><i class="bi bi-eye"></i></a></td>
 				    </tr>
-			  	<?php endif ?>
+			  	<?php endwhile ?>
 			  </tbody>
 			</table>
 	</div>

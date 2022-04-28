@@ -102,15 +102,40 @@ class Route extends Superglobals
 					$createPost->createPost();
 					break;
 
-				case 'editPost':
-					$editPost = new AdminController;
-					$editPost->editPost();
+				case 'addPost':
+					$addPost = new AdminController;
+					$addPost->addPost();
 					break;
 
+				case 'editPost':
+					if (isset($get['id']) && !empty($get['id'])) {
+						$editPost = new AdminController;
+						$editPost->editPost();
+						break;
+					} else {
+						http_response_code(404);
+						break;
+					}
+
+				case 'updatePost':
+					if (isset($get['id']) && !empty($get['id'])) {
+						$updatePost = new AdminController;
+						$updatePost->updatePost();
+						break;
+					} else {
+						http_response_code(404);
+						break;
+					}
+
 				case 'deletePost':
-					$deletePost = new AdminController;
-					$deletePost->deletePost();
-					break;
+					if (isset($get['id']) && !empty($get['id'])) {
+						$deletePost = new AdminController;
+						$deletePost->deletePost();
+						break;
+					} else {
+						http_response_code(404);
+						break;
+					}
 
 				default:
 					http_response_code(404);

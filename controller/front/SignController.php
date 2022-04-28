@@ -23,10 +23,8 @@ class SignController extends Controller
 			$server = $this->get_SERVER();
 			$postUp = $this->get_SESSION('postUp');
 			$postIn = $this->get_SESSION('postIn');
-			$errorSignUp = $this->get_SESSION('msgErrorSignUp');
-			$successSignUp = $this->get_SESSION('msgSuccessSignUp');
-			$errorSignIn = $this->get_SESSION('msgErrorSignIn');
-			$successSignIn = $this->get_SESSION('msgSuccessSignIn');
+			$error = $this->get_SESSION('msgError');
+			$success = $this->get_SESSION('msgSuccess');
 			require 'view/front/signInUp.php';
 		}
 	}
@@ -58,7 +56,7 @@ class SignController extends Controller
 				$pseudoExist = $pseudoExist->fetch();
 
 				if ($pseudoExist !== false) {
-					$this->set_SESSION('msgErrorSignUp', "Ce pseudo existe déjà, trouve en un autre.<br><em>Astuce ajoute des chiffres à la fin.</em>");
+					$this->set_SESSION('msgError', "Ce pseudo existe déjà, trouve en un autre.<br><em>Astuce ajoute des chiffres à la fin.</em>");
 					header('Location: ?action=sign');
 					die;
 				}
@@ -72,12 +70,12 @@ class SignController extends Controller
 					$emailExist = $emailExist->fetch();
 
 					if ($emailExist !== false) {
-						$this->set_SESSION('msgErrorSignUp', "Cet email est déjà pris.<br><em>Avez-vous déjà créé un compte?</em>");
+						$this->set_SESSION('msgError', "Cet email est déjà pris.<br><em>Avez-vous déjà créé un compte?</em>");
 						header('Location: ?action=sign');
 						die;
 					}
 				} else {
-					$this->set_SESSION('msgErrorSignUp', "Ton mail n'est pas correct");
+					$this->set_SESSION('msgError', "Ton mail n'est pas correct");
 					header('Location: ?action=sign');
 					die();
 				}
@@ -88,14 +86,14 @@ class SignController extends Controller
 				$number = preg_match('@[0-9]@', $post['password1']);
 				$specialChars = preg_match('@[^\w]@', $post['password1']);
 				if (!$uppercase || !$lowercase || !$number || !$specialChars || strlen($post['password1']) < 8) {
-					$this->set_SESSION('msgErrorSignUp', "Ton mot de passe n'est pas correct");
+					$this->set_SESSION('msgError', "Ton mot de passe n'est pas correct");
 					header('Location: ?action=sign');
 					die();
 				} else {
 					if ($post['password1'] === $post['password2']) {
 						$password = password_hash($post['password1'], PASSWORD_DEFAULT);
 					} else {
-						$this->set_SESSION('msgErrorSignUp', "Ton mot de passe et la confirmation de mot de passe ne sont pas identiques.");
+						$this->set_SESSION('msgError', "Ton mot de passe et la confirmation de mot de passe ne sont pas identiques.");
 						header('Location: ?action=sign');
 						die();
 					}
@@ -106,7 +104,7 @@ class SignController extends Controller
 					$token = bin2hex(random_bytes(10));
 					$code = $token[15].$token[2].$token[16].$token[1].$token[8].$token[10];
 
-					$value = $name.','.$surname.','.$pseudo.','.$email.','.$password.','.$token;
+					$value = [$name,$surname,$pseudo,$email,$password,$token];
 					$newUser = new Model;
 					$newUser = $newUser->insert('user', $value);
 
@@ -173,20 +171,20 @@ class SignController extends Controller
 
 						if (mail($to, $subject, $message, $headers)) {
 							$this->unset_SESSION(['postUp']);
-							$this->set_SESSION('msgSuccessSignUp', 'Votre compte est bien enregistré.<br>Vous allez recevoir un mail pour valider votre compte.');
+							$this->set_SESSION('msgSuccess', 'Votre compte est bien enregistré.<br>Vous allez recevoir un mail pour valider votre compte.');
 							header('Location: ?action=sign');
 							die;
 						} else {
-							$this->set_SESSION('msgErrorSignUp', 'Le mail de validation n\'a pu être envoyer. Contactez le site.');
+							$this->set_SESSION('msgError', 'Le mail de validation n\'a pu être envoyer. Contactez le site.');
 						}
 					} else {
-						$this->set_SESSION('msgErrorSignUp', 'Une erreur est survenue lors de votre inscription.');
+						$this->set_SESSION('msgError', 'Une erreur est survenue lors de votre inscription.');
 						header('Location: ?action=sign');
 						die;
 					}
 				}
 			} else {
-				$this->set_SESSION('msgErrorSignUp', 'Certains champs ne sont pas remplis');
+				$this->set_SESSION('msgError', 'Certains champs ne sont pas remplis');
 				header('Location: ?action=sign');
 				die();
 			}
@@ -293,26 +291,26 @@ class SignController extends Controller
 							$lien = $post['lien'];
 							$this->unset_SESSION(['postIn']);
 							$this->set_SESSION('user',$user);
-							$this->set_SESSION('msgSuccessSignIn','Vous êtes connecté.');
+							$this->set_SESSION('msgSuccess','Vous êtes connecté.');
 							header('Location: '.$lien);
 							die;
 						} else {
-							$this->set_SESSION('msgErrorSignIn','Le mot de passe est incorrect.');
+							$this->set_SESSION('msgError','Le mot de passe est incorrect.');
 							header('Location: ?action=sign');
 							die;
 						}
 					} else {
-						$this->set_SESSION('msgErrorSignIn','Ce compte est en attente de validation');
+						$this->set_SESSION('msgError','Ce compte est en attente de validation');
 						header('Location: ?action=sign');
 						die;
 					}
 				} else {
-					$this->set_SESSION('msgErrorSignIn','Ce compte n\'existe pas.');
+					$this->set_SESSION('msgError','Ce compte n\'existe pas.');
 					header('Location: ?action=sign');
 					die;
 				}
 			} else {
-				$this->set_SESSION('msgErrorSignIn', 'Certain champ ne sont pas remplis.');
+				$this->set_SESSION('msgError', 'Certain champ ne sont pas remplis.');
 				header('Location: ?action=sign');
 				die;
 			}
@@ -327,7 +325,7 @@ class SignController extends Controller
 	{
 		$lien = $this->get_SERVER('HTTP_REFERER');
 		$this->unset_SESSION(['user']);
-		$this->set_SESSION('msgSuccessSignIn','Vous êtes déconnecté.');
+		$this->set_SESSION('msgSuccess','Vous êtes déconnecté.');
 		header('Location: '.$lien);
 		die;
 	}

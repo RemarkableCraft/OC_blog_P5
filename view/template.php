@@ -40,13 +40,24 @@
 </head>
 
 <body>
-	<?php if (isset($successSignIn) && !empty($successSignIn)): ?>
+	<!-- ======= Message Popup ======= -->
+	<?php if (isset($success) && !empty($success)): ?>
 		<div class="toast fixed-top m-5 bg-success text-white bg-opacity-50" role="alert" aria-live="assertive" aria-atomic="true">
 		  <div class="toast-body fs-5">
-		    <?= $successSignIn ?>
+		    <?= $success ?>
 		  </div>
 		</div>
 	<?php endif ?>
+
+	<?php if (isset($error) && !empty($error)): ?>
+		<div class="toast fixed-top m-5 bg-danger text-white bg-opacity-50" role="alert" aria-live="assertive" aria-atomic="true">
+		  <div class="toast-body fs-5">
+		    <?= $error ?>
+		  </div>
+		</div>
+	<?php endif ?>
+	<!-- End Message Popup -->
+
 	<!-- ======= Hero Section ======= -->
 	<?php if (isset($hero) && $hero === "true") {
 		include 'template/_hero-section.php';
@@ -126,5 +137,5 @@
 </html>
 
 <?php
-	$this->unset_SESSION(['msgErrorSignIn','msgSuccessSignIn','msgErrorSignUp','msgSuccessSignUp']);
+	$this->unset_SESSION(['msgSuccess','msgError']);
 ?>

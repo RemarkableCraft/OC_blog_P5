@@ -22,7 +22,8 @@ class HomeController extends Controller
 		$errorContact = $this->get_SESSION('msgErrorContact');
 		$successContact = $this->get_SESSION('msgSuccessContact');
 
-		$successSignIn = $this->get_SESSION('msgSuccessSignIn');
+		$success = $this->get_SESSION('msgSuccess');
+		$error = $this->get_SESSION('msgError');
 		require 'view/front/home.php';
 	}
 }

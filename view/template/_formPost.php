@@ -8,7 +8,12 @@
 			<?php endif ?>
 		</div>
 
-		<form action="#" method="POST" novalidate class="needs-validation php-email-form shadow" data-aos="fade-left">
+		<form action="
+			<?php if ($lien === 'action=createPost'): ?>
+				?action=addPost
+			<?php else: ?>
+				?action=updatePost&id=<?= $post['idPost'] ?>
+			<?php endif ?>" method="POST" novalidate class="needs-validation php-email-form shadow" data-aos="fade-left">
 			<!-- ==== Message Error ==== -->
 			<?php if (isset($errorPost) && !empty($errorPost)): ?>
 				<div class="alert alert-danger" role="alert">
@@ -39,7 +44,7 @@
 
 			<!-- ==== Contenu ==== -->
 			<div class="form-group mt-3">
-				<div id="editor"><?php if ($lien !== 'action=createPost'){ echo $post['contentPost']; } elseif	(isset($POST) && !empty($POST)) { echo $POST['contentPost']; } ?></div>
+				<div id="editor"><?php if ($lien !== 'action=createPost'){ echo html_entity_decode($post['contentPost']); } elseif	(isset($POST) && !empty($POST)) { echo $POST['contentPost']; } ?></div>
 				<input type="hidden" name="contentPost" id="contentPost" required>
 			</div>
 				<div class="invalid-feedback" id="invalid-feedback">Écrit au moins un petit truc, allez...</div><!-- message required -->
@@ -56,63 +61,63 @@
 				</div>
 
 				<div class="form-check m-2 ps-0 w-25">
-				  <input class="d-none" type="radio" name="imagePost" id="image2" value="https://picsum.photos/id/1/1000/800" <?php if ($lien !== 'action=createPost' && $post['imagePost'] === 'https://picsum.photos/id/1/1000/800'): ?> checked <?php endif ?>>
+				  <input class="d-none" type="radio" name="imagePost" id="image2" value="https://picsum.photos/id/1/1000/800" <?php if ($lien !== 'action=createPost' && $post['imagePost'] === 'https://picsum.photos/id/1/1000/800'): ?> checked <?php elseif (isset($POST) && !empty($POST) && $POST['imagePost'] === 'https://picsum.photos/id/1/1000/800'):?> checked <?php endif ?>>
 				  <label class="form-check-label" for="image2">
 				    <img src="https://picsum.photos/id/1/1000/800" class="img-featured img-thumbnail">
 				  </label>
 				</div>
 				
 				<div class="form-check m-2 ps-0 w-25">
-				  <input class="d-none" type="radio" name="imagePost" id="image3" value="https://picsum.photos/id/103/1000/800" <?php if ($lien !== 'action=createPost' && $post['imagePost'] === 'https://picsum.photos/id/103/1000/800'): ?> checked <?php endif ?>>
+				  <input class="d-none" type="radio" name="imagePost" id="image3" value="https://picsum.photos/id/103/1000/800" <?php if ($lien !== 'action=createPost' && $post['imagePost'] === 'https://picsum.photos/id/103/1000/800'): ?> checked <?php elseif (isset($POST) && !empty($POST) && $POST['imagePost'] === 'https://picsum.photos/id/103/1000/800'):?> checked <?php endif ?>>
 				  <label class="form-check-label" for="image3">
 				    <img src="https://picsum.photos/id/103/1000/800" class="img-featured img-thumbnail">
 				  </label>
 				</div>
 				
 				<div class="form-check m-2 ps-0 w-25">
-				  <input class="d-none" type="radio" name="imagePost" id="image4" value="https://picsum.photos/id/1031/1000/800" <?php if ($lien !== 'action=createPost' && $post['imagePost'] === 'https://picsum.photos/id/1031/1000/800'): ?> checked <?php endif ?>>
+				  <input class="d-none" type="radio" name="imagePost" id="image4" value="https://picsum.photos/id/1031/1000/800" <?php if ($lien !== 'action=createPost' && $post['imagePost'] === 'https://picsum.photos/id/1031/1000/800'): ?> checked <?php elseif (isset($POST) && !empty($POST) && $POST['imagePost'] === 'https://picsum.photos/id/1031/1000/800'):?> checked <?php endif ?>>
 				  <label class="form-check-label" for="image4">
 				    <img src="https://picsum.photos/id/1031/1000/800" class="img-featured img-thumbnail">
 				  </label>
 				</div>
 				
 				<div class="form-check m-2 ps-0 w-25">
-				  <input class="d-none" type="radio" name="imagePost" id="image5" value="https://picsum.photos/id/1033/1000/800" <?php if ($lien !== 'action=createPost' && $post['imagePost'] === 'https://picsum.photos/id/1033/1000/800'): ?> checked <?php endif ?>>
+				  <input class="d-none" type="radio" name="imagePost" id="image5" value="https://picsum.photos/id/1033/1000/800" <?php if ($lien !== 'action=createPost' && $post['imagePost'] === 'https://picsum.photos/id/1033/1000/800'): ?> checked <?php elseif (isset($POST) && !empty($POST) && $POST['imagePost'] === 'https://picsum.photos/id/1033/1000/800'):?> checked <?php endif ?>>
 				  <label class="form-check-label" for="image5">
 				    <img src="https://picsum.photos/id/1033/1000/800" class="img-featured img-thumbnail">
 				  </label>
 				</div>
 				
 				<div class="form-check m-2 ps-0 w-25">
-				  <input class="d-none" type="radio" name="imagePost" id="image6" value="https://picsum.photos/id/1060/1000/800" <?php if ($lien !== 'action=createPost' && $post['imagePost'] === 'https://picsum.photos/id/1060/1000/800'): ?> checked <?php endif ?>>
+				  <input class="d-none" type="radio" name="imagePost" id="image6" value="https://picsum.photos/id/1060/1000/800" <?php if ($lien !== 'action=createPost' && $post['imagePost'] === 'https://picsum.photos/id/1060/1000/800'): ?> checked <?php elseif (isset($POST) && !empty($POST) && $POST['imagePost'] === 'https://picsum.photos/id/1060/1000/800'):?> checked <?php endif ?>>
 				  <label class="form-check-label" for="image6">
 				    <img src="https://picsum.photos/id/1060/1000/800" class="img-featured img-thumbnail">
 				  </label>
 				</div>
 				
 				<div class="form-check m-2 ps-0 w-25">
-				  <input class="d-none" type="radio" name="imagePost" id="image7" value="https://picsum.photos/id/1067/1000/800" <?php if ($lien !== 'action=createPost' && $post['imagePost'] === 'https://picsum.photos/id/1067/1000/800'): ?> checked <?php endif ?>>
+				  <input class="d-none" type="radio" name="imagePost" id="image7" value="https://picsum.photos/id/1067/1000/800" <?php if ($lien !== 'action=createPost' && $post['imagePost'] === 'https://picsum.photos/id/1067/1000/800'): ?> checked <?php elseif (isset($POST) && !empty($POST) && $POST['imagePost'] === 'https://picsum.photos/id/1067/1000/800'):?> checked <?php endif ?>>
 				  <label class="form-check-label" for="image7">
 				    <img src="https://picsum.photos/id/1067/1000/800" class="img-featured img-thumbnail">
 				  </label>
 				</div>
 				
 				<div class="form-check m-2 ps-0 w-25">
-				  <input class="d-none" type="radio" name="imagePost" id="image8" value="https://picsum.photos/id/119/1000/800" <?php if ($lien !== 'action=createPost' && $post['imagePost'] === 'https://picsum.photos/id/119/1000/800'): ?> checked <?php endif ?>>
+				  <input class="d-none" type="radio" name="imagePost" id="image8" value="https://picsum.photos/id/119/1000/800" <?php if ($lien !== 'action=createPost' && $post['imagePost'] === 'https://picsum.photos/id/119/1000/800'): ?> checked <?php elseif (isset($POST) && !empty($POST) && $POST['imagePost'] === 'https://picsum.photos/id/119/1000/800'):?> checked <?php endif ?>>
 				  <label class="form-check-label" for="image8">
 				    <img src="https://picsum.photos/id/119/1000/800" class="img-featured img-thumbnail">
 				  </label>
 				</div>
 				
 				<div class="form-check m-2 ps-0 w-25">
-				  <input class="d-none" type="radio" name="imagePost" id="image9" value="https://picsum.photos/id/160/1000/800" <?php if ($lien !== 'action=createPost' && $post['imagePost'] === 'https://picsum.photos/id/160/1000/800'): ?> checked <?php endif ?>>
+				  <input class="d-none" type="radio" name="imagePost" id="image9" value="https://picsum.photos/id/160/1000/800" <?php if ($lien !== 'action=createPost' && $post['imagePost'] === 'https://picsum.photos/id/160/1000/800'): ?> checked <?php elseif (isset($POST) && !empty($POST) && $POST['imagePost'] === 'https://picsum.photos/id/160/1000/800'):?> checked <?php endif ?>>
 				  <label class="form-check-label" for="image9">
 				    <img src="https://picsum.photos/id/160/1000/800" class="img-featured img-thumbnail">
 				  </label>
 				</div>
 				
 				<div class="form-check m-2 ps-0 w-25">
-				  <input class="d-none" type="radio" name="imagePost" id="image10" value="https://picsum.photos/id/180/1000/800" <?php if ($lien !== 'action=createPost' && $post['imagePost'] === 'https://picsum.photos/id/180/1000/800'): ?> checked <?php endif ?>>
+				  <input class="d-none" type="radio" name="imagePost" id="image10" value="https://picsum.photos/id/180/1000/800" <?php if ($lien !== 'action=createPost' && $post['imagePost'] === 'https://picsum.photos/id/180/1000/800'): ?> checked <?php elseif (isset($POST) && !empty($POST) && $POST['imagePost'] === 'https://picsum.photos/id/180/1000/800'):?> checked <?php endif ?>>
 				  <label class="form-check-label" for="image10">
 				    <img src="https://picsum.photos/id/180/1000/800" class="img-featured img-thumbnail">
 				  </label>
@@ -121,7 +126,11 @@
 			<!-- END Image -->
 
 			<div class="text-center">
+			<?php if ($lien === 'action=createPost'): ?>
 				<button type="submit" class="btn-get-started" name="soumission" id="soumission">Créer l'article</button>
+			<?php else: ?>
+				<button type="submit" class="btn-get-started" name="soumission" id="soumission">Modifier l'article</button>
+			<?php endif ?>
 			</div>
 		</form>
 	</div>
