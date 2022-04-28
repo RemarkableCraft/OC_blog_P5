@@ -49,7 +49,7 @@ class Route extends Superglobals
 
 				case 'validComment':
 					if (isset($get['id']) && !empty($get['id'])) {
-						$validComment = new CommentController;
+						$validComment = new AdminController;
 						$validComment->validComment();
 						break;
 					} else {
