@@ -10,7 +10,7 @@
 		<!-- End About Us Section -->
 
 		<!-- ======= Blog Section ======= -->
-		<?php include 'view/template/_lastPost-section.php'; ?>
+		<?php include 'view/template/_blog-section.php'; ?>
 		<!-- End Blog Section -->
 
 		<!-- ======= Contact Section ======= -->

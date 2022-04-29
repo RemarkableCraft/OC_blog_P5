@@ -1,12 +1,14 @@
 <section id="cv" class="cv">
 	<div class="container">
-
+		<!-- ===== Title Cv Section ===== -->
 		<div class="section-title" data-aos="fade-up">
 			<h2>Curiculum vitae</h2>
 			<p>On sait jamais. Cà peut toujours servir</p>
 		</div>
+		<!-- END Title Cv Section -->
 
 		<div class="row align-items-center">
+			<!-- ===== Info Cv ===== -->
 			<div class="col-lg-6 order-2 order-lg-1">
 				<div class="icon-box mt-5 mt-lg-0" data-aos="fade-up">
 					<i class="bx bx-receipt"></i>
@@ -29,11 +31,13 @@
 					<p>Expedita veritatis consequuntur nihil tempore laudantium vitae denat pacta</p>
 				</div>
 			</div>
+			<!-- END Info Cv -->
 
+			<!-- ===== File Cv ===== -->
 			<div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
 				<object data="public/assets/file/CV_v2022.pdf" type="application/pdf" class="pdf"></object>
 			</div>
+			<!-- END File Cv -->
 		</div>
-
 	</div>
 </section>

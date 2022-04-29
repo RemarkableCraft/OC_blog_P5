@@ -12,11 +12,11 @@ class Model extends DbModel
 	 * @param  string      $champ      champ(s) de la table de BDD
 	 * @param  string      $table      nom de la table de BDD
 	 * @param  string|null $condition  extraire les lignes d’une base de données qui respectent une condition
-	 * @param  string|null $value      la valeur de la condition
+	 * @param  array|null  $value      la valeur de la condition
 	 * @param  string|null $expression trier les données sur une ou plusieurs colonnes, par ordre ascendant ou descendant.
-	 * @param  int|null    $count      nbr de resultat
+	 * @param  string|null $count      nbr de resultat
 	 */
-	public function select($champ, $table, $condition=NULL, $value=NULL, $expression=NULL, $count=NULL)
+	public function select(string $champ, string $table, string $condition=NULL, array $value=NULL, string $expression=NULL, string $count=NULL)
 	{
 		$db = $this->dbConnect();
 
@@ -39,20 +39,24 @@ class Model extends DbModel
 		} else {
 			$cmd .= ' LIMIT '.$count;
 		}
-		
 
 		if ($condition == NULL) {
 			$req = $db->query('SELECT '.$champ.' FROM '.$table.' '.$fk.' '.$cmd.'');
 			return $req;
 		} else {
 			$req = $db->prepare('SELECT '.$champ.' FROM '.$table.' '.$fk.' WHERE '.$condition.' = ? '.$cmd.'');
-			$req->execute(array($value));
+			$req->execute($value);
 
 			return $req;
 		}
 	}
 
 
+	/**
+	 * Requête SQL INSERT
+	 * @param  string $table nom de la table de BDD
+	 * @param  array  $value les valeurs à entrer dans la BDD
+	 */
 	public function insert(string $table, array $value)
 	{
 		$db = $this->dbConnect();
@@ -85,8 +89,14 @@ class Model extends DbModel
 	}
 
 
-
-	public function update($table, $set, $condition, $value)
+	/**
+	 * Requête SQL UPDATE
+	 * @param  string $table     nom de la table de BDD
+	 * @param  string $set       valeur des changement à apporter
+	 * @param  string $condition agit sur les lignes d’une base de données qui respectent une condition
+	 * @param  array  $value     la valeur de la condition
+	 */
+	public function update(string $table, string $set, string $condition, array $value)
 	{
 		$db = $this->dbConnect();
 		$req = $db->prepare
@@ -95,19 +105,24 @@ class Model extends DbModel
 			' WHERE '.$condition.'=?
 		');
 
-		$req = $req->execute(array($value));
+		$req = $req->execute($value);
 
 		return $req;
 	}
 
 
-
-	public function delete($table, $condition, $value)
+	/**
+	 * Requête SQL DELETE
+	 * @param  string $table     nom de la table de BDD
+	 * @param  string $condition agit sur les lignes d’une base de données qui respectent une condition
+	 * @param  array  $value     la valeur de la condition
+	 */
+	public function delete(string $table, string $condition, array $value)
 	{
 		$db = $this->dbConnect();
 
 		$req = $db->prepare('DELETE FROM '.$table.' WHERE '.$condition.' = ?');
-		$req = $req->execute(array($value));
+		$req = $req->execute($value);
 
 		return $req;
 	}

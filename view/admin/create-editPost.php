@@ -12,9 +12,9 @@
 
 <?php ob_start(); ?>
 	<main id="main">
-		<!-- ======= Dashboard Section ======= -->
+		<!-- ===== Form Edit/Create Post ===== -->
 		<?php include 'view/template/_formPost.php'; ?>
-		<!-- End Dashboard Section -->
+		<!-- END Form Edit/Create Post -->
 	</main>
 <?php $main = ob_get_clean(); ?>
 

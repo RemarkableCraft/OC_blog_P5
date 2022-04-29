@@ -4,9 +4,17 @@
 
 <?php ob_start(); ?>
 	<main id="main">
-		<!-- ======= Dashboard Section ======= -->
-		<?php include 'view/template/_dashboard-section.php'; ?>
-		<!-- End Dashboard Section -->
+		<!-- ===== Create Post Section ===== -->
+		<?php include 'view/template/_createPost-adminSection.php'; ?>
+		<!-- End Create Post Section -->
+
+		<!-- ===== Table Post Section ===== -->
+		<?php include 'view/template/_tablePost-adminSection.php'; ?>
+		<!-- End Table Post Section -->
+
+		<!-- ===== Table Comment Section ===== -->
+		<?php include 'view/template/_tableComment-adminSection.php'; ?>
+		<!-- End Table Comment Section -->
 	</main>
 <?php $main = ob_get_clean(); ?>
 

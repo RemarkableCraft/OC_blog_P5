@@ -13,11 +13,13 @@ abstract class Superglobals
 	private $_POST;
 	private $_SESSION;
 	private $_SERVER;
-	
+
+
 	function __construct()
 	{
 		$this->define_superglobals();
 	}
+
 
 	/**
 	 * Récupere les valeurs des GLOBALS
@@ -69,6 +71,7 @@ abstract class Superglobals
 		$_SESSION[$key] = $value;
 	}
 
+
 	/**
 	 * Retourne la valeur du _SESSION
 	 * @param  string|null $key Paramètre que l'on souhaite
@@ -82,6 +85,7 @@ abstract class Superglobals
 			return $this->_SESSION;
 		}
 	}
+
 
 	/**
 	 * Retourne la valeur du _SERVER
@@ -98,6 +102,10 @@ abstract class Superglobals
 	}
 
 
+	/**
+	 * Vide les valeur de _SESSION
+	 * @param  array  $key Paramètre que l'on souhaite supprimer
+	 */
 	public function unset_SESSION(array $key)
 	{
 		if (isset($key) && !empty($key)) {

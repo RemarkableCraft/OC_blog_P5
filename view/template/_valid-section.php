@@ -1,10 +1,12 @@
 <section id="valid" class="valid section-bg">
 	<div class="container">
-
+		<!-- ===== Title Valid Section ===== -->
 		<div class="section-title">
 			<h2>Validation d'inscription</h2>
 		</div>
-		<!-- ======= Connexion Form ======= -->
+		<!-- END Title Valid Section -->
+
+		<!-- ======= Valid Inscription Form ======= -->
 		<form action="?action=confirm" method="POST" role="form" class="needs-validation d-flex flex-column align-items-center" data-aos="fade-left" novalidate>
 
 			<?php if (isset($errorValid) && !empty($errorValid)): ?>
@@ -34,6 +36,6 @@
 				</div>
 			</div>
 		</form>
-		<!-- END Connexion Form -->
+		<!-- END Valid Inscription Form -->
 	</div>
 </section>

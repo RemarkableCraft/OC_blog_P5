@@ -9,7 +9,6 @@ use model\Model;
  */
 class BlogController extends Controller
 {
-	
 	/**
 	 * Affiche la page blog.php
 	 */
@@ -18,9 +17,11 @@ class BlogController extends Controller
 		$session = $this->get_SESSION();
 
 		$posts = new Model;
-		$posts = $posts->select('*','post','','','createDatePost DESC','');
+		$posts = $posts->select('*','post','',[],'createDatePost DESC','');
+
 		require 'view/front/blog.php';
 	}
+
 
 	/**
 	 * Affiche la page post.php
@@ -30,21 +31,28 @@ class BlogController extends Controller
 		$session = $this->get_SESSION();
 		$success = $this->get_SESSION('msgSuccess');
 		$error = $this->get_SESSION('msgError');
-
-		$idPost = $this->get_GET('id');
+		$idPost = [$this->get_GET('id')];
 
 		$post = new Model;
 		$post = $post->select('*','post','idPost',$idPost,'','');
 		$post = $post->fetch();
 
-		$comments = new Model;
-		$comments = $comments->select('*','comment','postComment',$idPost,'createDateComment DESC','');
+		$valueCommentValidate = [$this->get_GET('id'),'0'];
+		$commentsValidate = new Model;
+		$commentsValidate = $commentsValidate->select('*','comment','postComment = ? AND statusComment',$valueCommentValidate,'createDateComment DESC','');
 
-		//$nbrComment = $comments->rowCount();
+		$nbrComment = new Model;
+		$nbrComment = $nbrComment->select('*','comment','postComment = ? AND statusComment',$valueCommentValidate,'','');
+		$nbrComment = $nbrComment->rowCount();
+
+		$valueCommentNovalidate = [$this->get_GET('id'),'1'];
+		$commentsNovalidate = new Model;
+		$commentsNovalidate = $commentsNovalidate->select('*','comment','postComment = ? AND statusComment',$valueCommentNovalidate,'createDateComment DESC','');
 
 		if ($post !== false) {
 			$errorComment = $this->get_SESSION('msgErrorComment');
 			$successComment = $this->get_SESSION('msgSuccessComment');
+
 			require 'view/front/post-view.php';
 		} else {
 			http_response_code(404);
