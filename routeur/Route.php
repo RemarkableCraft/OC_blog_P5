@@ -137,6 +137,11 @@ class Route extends Superglobals
 						break;
 					}
 
+				case 'error404':
+					$error404 = new Controller;
+					$error404->error404();
+					break;
+
 				default:
 					http_response_code(404);
 					break;

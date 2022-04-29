@@ -20,4 +20,13 @@ class Controller extends Superglobals
 
 		return str_replace($english_months, $french_months, str_replace($english_days, $french_days, date($format, strtotime($date) ) ) );
 	}
+
+
+	/**
+	 * affiche la page 404
+	 */
+	public function error404()
+	{
+		require 'view/404.php';
+	}
 }
