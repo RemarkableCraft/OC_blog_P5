@@ -1,8 +1,6 @@
 <footer id="footer">
 	<div class="footer-top">
-
 		<div class="container">
-
 			<div class="row justify-content-center">
 				<div class="col-lg-6">
 					<a href="?action=home" class="footer-logo"><img src="public/assets/img/logo/code.png" alt=""></a>
@@ -21,7 +19,6 @@
 					<a href="?action=admin" class="fs-5"><strong>Dashboard</strong></a>
 				</div>
 			<?php endif ?>
-
 		</div>
 	</div>
 
@@ -29,6 +26,7 @@
 		<div class="copyright">
 			Template de base, &copy; <strong><span>Knight</span></strong>. Tous les droits sont réservés.
 		</div>
+		
 		<div class="credits">
 			<!-- All the links in the footer should remain intact. -->
 			<!-- You can delete the links only if you purchased the pro version. -->

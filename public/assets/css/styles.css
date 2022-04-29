@@ -1,4 +1,22 @@
-/* controle le bouton password en claire */
+/*--------------------------------------------------------------
+	scrollbar
+--------------------------------------------------------------*/
+html::-webkit-scrollbar {
+	width: 10px;
+}
+
+html::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+	background-color: darkolivegreen;
+	border-radius: 10px;
+}
+
+/*--------------------------------------------------------------
+	controle le bouton password en claire
+--------------------------------------------------------------*/
 .toggle-password.active .eye {
   display: none;
 }
@@ -34,12 +52,16 @@
   display: none;
 }
 
-/* affiche les commentaires non validé en vert claire */
+/*--------------------------------------------------------------
+	affiche les commentaires non validé en vert claire
+--------------------------------------------------------------*/
 .bg-comment {
 	background: #D5E6D4;
 }
 
-/* affichage des option dans le dashboard */
+/*--------------------------------------------------------------
+	affichage des option dans le dashboard
+--------------------------------------------------------------*/
 .option-links {
   margin-top: 30px;
 }
@@ -85,8 +107,10 @@
   text-decoration: none;
 }
 
-/* form article */
-/* mise en forme input radio image */
+/*--------------------------------------------------------------
+	form article
+	mise en forme input radio image
+--------------------------------------------------------------*/
 .form-check {
 	min-width: 200px;
 }
