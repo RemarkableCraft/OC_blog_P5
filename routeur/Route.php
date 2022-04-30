@@ -4,6 +4,7 @@ namespace routeur;
 use core\Superglobals;
 use controller\{Controller};
 use controller\front\{HomeController, SignController, BlogController, ContactController, CommentController};
+use controller\back\{AdminController};
 
 /**
  * 
@@ -48,7 +49,7 @@ class Route extends Superglobals
 
 				case 'validComment':
 					if (isset($get['id']) && !empty($get['id'])) {
-						$validComment = new CommentController;
+						$validComment = new AdminController;
 						$validComment->validComment();
 						break;
 					} else {
@@ -89,6 +90,56 @@ class Route extends Superglobals
 				case 'signOut':
 					$signOut = new SignController;
 					$signOut->signOut();
+					break;
+
+				case 'admin':
+					$admin = new AdminController;
+					$admin->admin();
+					break;
+
+				case 'createPost':
+					$createPost = new AdminController;
+					$createPost->createPost();
+					break;
+
+				case 'addPost':
+					$addPost = new AdminController;
+					$addPost->addPost();
+					break;
+
+				case 'editPost':
+					if (isset($get['id']) && !empty($get['id'])) {
+						$editPost = new AdminController;
+						$editPost->editPost();
+						break;
+					} else {
+						http_response_code(404);
+						break;
+					}
+
+				case 'updatePost':
+					if (isset($get['id']) && !empty($get['id'])) {
+						$updatePost = new AdminController;
+						$updatePost->updatePost();
+						break;
+					} else {
+						http_response_code(404);
+						break;
+					}
+
+				case 'deletePost':
+					if (isset($get['id']) && !empty($get['id'])) {
+						$deletePost = new AdminController;
+						$deletePost->deletePost();
+						break;
+					} else {
+						http_response_code(404);
+						break;
+					}
+
+				case 'error404':
+					$error404 = new Controller;
+					$error404->error404();
 					break;
 
 				default:

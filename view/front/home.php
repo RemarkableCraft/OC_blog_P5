@@ -10,7 +10,7 @@
 		<!-- End About Us Section -->
 
 		<!-- ======= Blog Section ======= -->
-		<?php include 'view/template/_lastPost-section.php'; ?>
+		<?php include 'view/template/_blog-section.php'; ?>
 		<!-- End Blog Section -->
 
 		<!-- ======= Contact Section ======= -->
@@ -24,9 +24,7 @@
 <?php $main = ob_get_clean(); ?>
 
 <?php
-	unset($_SESSION['msgErrorContact']);
-	unset($_SESSION['msgSuccessContact']);
-	unset($_SESSION['msgSuccessSignIn']);
+	$this->unset_SESSION(['msgErrorContact','msgSuccessContact']);
 ?>
 
 <?php require 'view/template.php'; ?>

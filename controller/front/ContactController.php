@@ -22,31 +22,35 @@ class ContactController extends Controller
 
 			// vérification champ par champ s'ils sont remplis
 			if (empty($post['name'])) {
-				$this->set_SESSION("msgErrorContact", "Le nom est vide");
+				$this->set_SESSION("msgError", "Le nom est vide");
+
 				header('Location: ?action=home#contact');
 				die;
 			}
+
 			if (empty($post['email'])) {
-				$this->set_SESSION("msgErrorContact", "Le mail est vide");
+				$this->set_SESSION("msgError", "Le mail est vide");
+
 				header('Location: ?action=home#contact');
 				die;
 			}
+
 			if (empty($post['message'])) {
-				$this->set_SESSION("msgErrorContact", "Le message est vide");
+				$this->set_SESSION("msgError", "Le message est vide");
+
 				header('Location: ?action=home#contact');
 				die;
 			}
 
 			// tous est bon
 			$msgError = $this->get_SESSION('msgErrorContact');
+
 			if (!isset($msgError)) {
 				$name = $this->verif($post['name']);
 				$email = $this->verif($post['email']);
 				$content = $this->verif($post['message']);
-
 				$to = 'masseestelle@gmail.com';
 				$subject = 'Nouveau message';
-
 				$message = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 					<html xmlns:v="urn:schemas-microsoft-com:vml">
 					<head>
@@ -92,7 +96,6 @@ class ContactController extends Controller
 						</table>
 					</body>
 					</html>';
-
 				$headers = "MIME-Version: 1.0\n";
 				$headers .= "From : ".$email."\n";
 				$headers .= "X-Priority : 1\n";
@@ -100,26 +103,27 @@ class ContactController extends Controller
 				$headers .= "Content-Transfer-Encoding: 8bit\n";
 
 				if (mail($to, $subject, $message, $headers)) {
-					unset($_SESSION['post']);
-					$this->set_SESSION("msgSuccessContact", "Votre mail est bien partie");
+					$this->unset_SESSION(['post']);
+					$this->set_SESSION("msgSuccess", "Votre mail est bien partie");
+
 					header('Location: ?action=home#contact');
 					die;
 				} else {
-					$this->set_SESSION("msgErrorContact", "Problème avec l'envoi du message, veuillez recommencer");
+					$this->set_SESSION("msgError", "Problème avec l'envoi du message, veuillez recommencer");
+
 					header('Location: ?action=home#contact');
 					die;
 				}
-				
-
 			}
 		} else {
-			$this->set_SESSION("msgErrorContact", "Le formulaire est vide");
+			$this->set_SESSION("msgError", "Le formulaire est vide");
+
 			header('Location: ?action=home#contact');
 			die;
 		}
 	}
 
-  function verif($value)
+	function verif($value)
 	{
 		$verif = htmlentities($value);
 		$verif = trim($verif);

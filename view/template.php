@@ -25,44 +25,46 @@
 	<!-- Template Knight CSS File -->
 	<link href="public/assets/css/knight.css" rel="stylesheet">
 
-	<!-- Template Main CSS File -->
-	<link href="public/assets/css/styles.css" rel="stylesheet">
-
 	<!-- =======================================================
 	* Template Name: Knight - v4.7.0
 	* Template URL: https://bootstrapmade.com/knight-free-bootstrap-theme/
 	* Author: BootstrapMade.com
 	* License: https://bootstrapmade.com/license/
 	======================================================== -->
+
+	<!-- Template Main CSS File -->
+	<link href="public/assets/css/styles.css" rel="stylesheet">
+
+	<!-- Include stylesheet for Quill -->
+	<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 </head>
 
 <body>
-	<?php if (isset($successSignIn) && !empty($successSignIn)): ?>
-		<div class="toast fixed-top m-5 bg-success text-white bg-opacity-50" role="alert" aria-live="assertive" aria-atomic="true">
-		  <div class="toast-body fs-5">
-		    <?= $successSignIn ?>
-		  </div>
-		</div>
-	<?php endif ?>
-	<!-- ======= Hero Section ======= -->
+	<!-- ===== Message Popup ===== -->
+	<?php include 'template/_message-popup.php'; ?>
+	<!-- END Message Popup -->
+
+	<!-- ===== Hero ===== -->
 	<?php if (isset($hero) && $hero === "true") {
 		include 'template/_hero-section.php';
 	}?>
-	<!-- End Hero -->
+	<!-- END Hero -->
 
-	<!-- ======= Header ======= -->
+	<!-- ===== Header ===== -->
 	<?php include 'template/_header.php'; ?>
-	<!-- End Header -->
+	<!-- END Header -->
 
-	<!-- ======= Main ======= -->
+	<!-- ===== Main ===== -->
 	<?= $main ?>
-	<!-- End Main -->
+	<!-- END Main -->
 
-	<!-- ======= Footer ======= -->
+	<!-- ===== Footer ===== -->
 	<?php include 'template/_footer.php'; ?>
-	<!-- End Footer -->
+	<!-- END Footer -->
 
+	<!-- ===== Button Back to top ===== -->
 	<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+	<!-- END Button Back to top -->
 
 	<!-- Vendor JS Files -->
 	<script src="public/assets/vendor/aos/aos.js"></script>
@@ -75,28 +77,23 @@
 	<!-- Template Main JS File -->
 	<script src="public/assets/js/knight.js"></script>
 
-	<!-- Afficher les messages 'required' -->
+	<!-- Show 'required' messages -->
 	<script src="public/assets/js/validationForm.js"></script>
 
-	<!-- Vérifier en temps réel la bonne syntax du mot de passe
-	---- & l'option mot de passe visible ou caché -->
+	<!-- Password option -->
 	<script src="public/assets/js/validationPassword.js"></script>
 
-	<!-- Afficher le toast -->
-	<script>
-		window.onload = (event) => {
-			let myAlert = document.querySelector('.toast');
-			let bsAlert = new bootstrap.Toast(myAlert);
-			bsAlert.show();
-		}
-	</script>
+	<!-- Show popup -->
+	<script src="public/assets/js/showPopup.js"></script>
 
+	<!-- Include the Quill library -->
+	<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+	<!-- Initialize Quill editor for formPost -->
+	<script src="public/assets/js/initializeQuill.js"></script>
 </body>
 </html>
 
 <?php
-	unset($_SESSION['msgErrorSignUp']);
-	unset($_SESSION['msgSuccessSignUp']);
-	unset($_SESSION['msgErrorSignIn']);
-	unset($_SESSION['msgSuccessSignIn']);
+	$this->unset_SESSION(['msgSuccess','msgError']);
 ?>

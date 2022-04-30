@@ -3,16 +3,15 @@
 <?php $hero = "false"; ?>
 
 <?php ob_start(); ?>
-  <main id="main">
+	<main id="main">
 		<!-- ======= Sign In/Up Section ======= -->
 		<?php include 'view/template/_valid-section.php'; ?>
 		<!-- End Sign In/Up Section -->
-  </main>
+	</main>
 <?php $main = ob_get_clean(); ?>
 
 <?php
-	unset($_SESSION['msgErrorValid']);
-	unset($_SESSION['msgSuccessValid']);
+	$this->unset_SESSION(['msgErrorValid','msgSuccessValid']);
 ?>
 
 <?php require 'view/template.php'; ?>
