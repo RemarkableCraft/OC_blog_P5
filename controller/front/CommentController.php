@@ -1,7 +1,7 @@
 <?php
 namespace controller\front;
 
-use controller\controller;
+use controller\Controller;
 use model\Model;
 
 /**

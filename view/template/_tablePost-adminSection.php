@@ -37,40 +37,40 @@
 
 						<td class="option-links">
 							<div class="d-flex">
-								<a href="?action=editPost&id=<?= $post['idPost'] ?>"class="edit"><i class="bi bi-pen"></i></a>
-								<a href="?action=deletePost&id=<?= $post['idPost'] ?>"class="delete"><i class="bi bi-trash"></i></a>
+								<a href="?action=editPost&id=<?= $post['idPost'] ?>" class="edit"><i class="bi bi-pen"></i></a>
+								<a href="?action=deletePost&id=<?= $post['idPost'] ?>" class="delete"><i class="bi bi-trash"></i></a>
 								<button class="edit" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $post['idPost'] ?>"><i class="bi bi-eye"></i></button>
 							</div>
 						</td>
 					</tr>
-
-					<!-- ===== Modal ===== -->
-					<div class="modal fade" id="exampleModal<?= $post['idPost'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel"><?= $post['titlePost'] ?></h5>
-
-									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-								</div>
-
-								<div class="modal-body">
-									<img src="<?= $post['imagePost'] ?>" class="img-thumbnail rounded mx-auto d-block">
-
-									<?= nl2br($post['contentPost']) ?>
-								</div>
-
-								<div class="modal-footer option-links">
-									<a href="?action=editPost&id=<?= $post['idPost'] ?>"class="edit"><i class="bi bi-pen"></i></a>
-
-									<a href="?action=deletePost"class="delete"><i class="bi bi-trash"></i></a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- END Modal -->
 				<?php endwhile ?>
 			</tbody>
 		</table>
 	</div>
 </section>
+
+<!-- ===== Modal ===== -->
+<div class="modal fade" id="exampleModal<?= $post['idPost'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel"><?= $post['titlePost'] ?></h5>
+
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+
+			<div class="modal-body">
+				<img src="<?= $post['imagePost'] ?>" class="img-thumbnail rounded mx-auto d-block">
+
+				<?= nl2br($post['contentPost']) ?>
+			</div>
+
+			<div class="modal-footer option-links">
+				<a href="?action=editPost&id=<?= $post['idPost'] ?>" class="edit"><i class="bi bi-pen"></i></a>
+
+				<a href="?action=deletePost" class="delete"><i class="bi bi-trash"></i></a>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- END Modal -->

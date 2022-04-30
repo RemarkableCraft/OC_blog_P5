@@ -2,7 +2,7 @@
 namespace controller\front;
 
 use core\Superglobals;
-use controller\controller;
+use controller\Controller;
 
 /**
  * Traitement du formulaire de contact
