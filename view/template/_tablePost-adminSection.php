@@ -21,7 +21,7 @@
 			<tbody>
 				<?php while($post = $posts->fetch(PDO::FETCH_ASSOC)): ?>
 					<tr>
-						<th scope="row"><?= $post['idPost'] ?></th>
+						<th scope="row"><input type="text" name="view_post_id" id="view_post_id" value="<?= $post['idPost'] ?>" disabled></th>
 
 						<td><?= $post['titlePost'] ?></td>
 
@@ -39,7 +39,7 @@
 							<div class="d-flex">
 								<a href="?action=editPost&id=<?= $post['idPost'] ?>" class="edit"><i class="bi bi-pen"></i></a>
 								<a href="?action=deletePost&id=<?= $post['idPost'] ?>" class="delete"><i class="bi bi-trash"></i></a>
-								<button class="edit" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $post['idPost'] ?>"><i class="bi bi-eye"></i></button>
+								<button type="button" name="view_post" id="view_post" class="edit" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-eye"></i></button>
 							</div>
 						</td>
 					</tr>
@@ -50,25 +50,19 @@
 </section>
 
 <!-- ===== Modal ===== -->
-<div class="modal fade" id="exampleModal<?= $post['idPost'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel"><?= $post['titlePost'] ?></h5>
+				<h5 class="modal-title" id="modal-title"></h5>
 
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 
 			<div class="modal-body">
-				<img src="<?= $post['imagePost'] ?>" class="img-thumbnail rounded mx-auto d-block">
+				<img src="" class="img-thumbnail rounded mx-auto d-block" id="modal-image">
 
-				<?= nl2br($post['contentPost']) ?>
-			</div>
-
-			<div class="modal-footer option-links">
-				<a href="?action=editPost&id=<?= $post['idPost'] ?>" class="edit"><i class="bi bi-pen"></i></a>
-
-				<a href="?action=deletePost" class="delete"><i class="bi bi-trash"></i></a>
+				<div id="modal-content"></div>
 			</div>
 		</div>
 	</div>
