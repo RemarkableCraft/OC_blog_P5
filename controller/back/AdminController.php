@@ -191,6 +191,24 @@ class AdminController extends Controller
 	}
 
 
+	public function viewPost()
+	{
+		$idPost = $this->get_GET('id');
+
+		if (isset($idPost)) {
+			$postJSON = new Model;
+			$postJSON = $postJSON->select('*','post','idPost',[$idPost],'','');
+
+			while ($postJSONs = $postJSON->fetch()) {
+				$data['titlePost'] = html_entity_decode($postJSONs['titlePost']);
+				$data['contentPost'] = html_entity_decode($postJSONs['contentPost']);
+				$data['imagePost'] = html_entity_decode($postJSONs['imagePost']);
+			}
+			echo json_encode($data);
+		}
+	}
+
+
 	/**
 	 * validation des commentaires par l'admin
 	 */

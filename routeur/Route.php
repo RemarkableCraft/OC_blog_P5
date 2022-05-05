@@ -137,6 +137,11 @@ class Route extends Superglobals
 						break;
 					}
 
+				case 'viewPost':
+					$viewPost = new AdminController;
+					$viewPost->viewPost();
+					break;
+
 				case 'error404':
 					$error404 = new Controller;
 					$error404->error404();
