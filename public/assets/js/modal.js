@@ -2,21 +2,20 @@ $(document).ready(function(){
 	$('#view_post').click(function(){
 		var id= $('#view_post_id').val();
 
-		alert(id);
-
 		if (id != '') {
 			$.ajax({
-				url:"?action=viewPost",
-				method:"POST",
+				url:"?action=viewPost&id=.id",
+				method:"GET",
 				data:{id:id},
 				dataType:"JSON",
+				timeout: 20000,
 
 				success:function(data){
-					$('#modal-title').text(data.titlePost);
-					$('#modal-image').src(data.imagePost);
-					$('#modal-content').text(data.contentPost);
+					$('#modal-title').html(data.titlePost);
+					$('#modal-image').attr('src',data.imagePost);
+					$('#modal-content').html(data.contentPost);
 				}
-			})
+			});
 		} else {
 			alert('Aucun post présent');
 		}

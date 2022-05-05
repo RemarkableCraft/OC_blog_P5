@@ -193,20 +193,19 @@ class AdminController extends Controller
 
 	public function viewPost()
 	{
-		$idPost = $this->get_POST('id');
-		echo $idPost;
-		var_dump($_POST);
-		/*if (isset($_POST['id'])) {
-			$postJSON = new Model;
-			$postJSON = $postJSON->select('*','post','idPost',[$_POST['id']],'','');
+		$idPost = $this->get_GET('id');
 
-			while ($postJSON = $postJSON->fetch()) {
-				$data['titlePost'] = $postJSON['titlePost'];
-				$data['contentPost'] = $postJSON['contentPost'];
-				$data['imagePost'] = $postJSON['imagePost'];
+		if (isset($idPost)) {
+			$postJSON = new Model;
+			$postJSON = $postJSON->select('*','post','idPost',[$idPost],'','');
+
+			while ($postJSONs = $postJSON->fetch()) {
+				$data['titlePost'] = html_entity_decode($postJSONs['titlePost']);
+				$data['contentPost'] = html_entity_decode($postJSONs['contentPost']);
+				$data['imagePost'] = html_entity_decode($postJSONs['imagePost']);
 			}
 			echo json_encode($data);
-		}*/
+		}
 	}
 
 

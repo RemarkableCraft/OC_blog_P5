@@ -51,7 +51,7 @@
 
 <!-- ===== Modal ===== -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
-	<div class="modal-dialog">
+	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="modal-title"></h5>
@@ -62,7 +62,7 @@
 			<div class="modal-body">
 				<img src="" class="img-thumbnail rounded mx-auto d-block" id="modal-image">
 
-				<div id="modal-content"></div>
+				<div id="modal-content" class="mt-3 p-3"></div>
 			</div>
 		</div>
 	</div>
