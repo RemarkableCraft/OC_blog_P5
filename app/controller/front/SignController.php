@@ -155,7 +155,7 @@ class SignController extends Controller
 									<tfoot>
 										<tr>
 											<td width="10%"></td>
-											<td bgcolor="#D5E6D4" style="padding: 10px; font-size: 25px; border-radius: 0 0 20px 20px;">&nbsp</td>
+											<td bgcolor="#D5E6D4" style="padding: 10px; font-size: 25px; border-radius: 0 0 20px 20px; height: 10px;"></td>
 											<td width="10%"></td>
 										</tr>
 										<tr style="height: 5vh;"></tr>
@@ -203,12 +203,19 @@ class SignController extends Controller
 	 */
 	public function valid()
 	{
-		$token = $this->get_GET('token');
-		$user = $this->get_GET('pseudo');
-		$errorValid = $this->get_SESSION('msgErrorValid');
-		$successValid = $this->get_SESSION('msgSuccessValid');
+		$session = $this->get_SESSION();
 
-		require 'view/front/validSignUp.php';
+		if (isset($session['user']) && !empty($session['user'])) {
+			header('Location: ?action=home');
+			die;
+		} else {
+			$token = $this->get_GET('token');
+			$user = $this->get_GET('pseudo');
+			$errorValid = $this->get_SESSION('msgErrorValid');
+			$successValid = $this->get_SESSION('msgSuccessValid');
+
+			require 'view/front/validSignUp.php';
+		}
 	}
 
 
