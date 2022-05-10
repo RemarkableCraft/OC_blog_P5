@@ -108,6 +108,16 @@ html::-webkit-scrollbar-thumb {
 }
 
 /*--------------------------------------------------------------
+	affichage de l'input dans le dashboard
+--------------------------------------------------------------*/
+#tablePost input:disabled {
+	width: 100%;
+	border: none;
+	background: transparent;
+}
+
+
+/*--------------------------------------------------------------
 	form article
 	mise en forme input radio image
 --------------------------------------------------------------*/
