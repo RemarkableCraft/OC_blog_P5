@@ -12,7 +12,7 @@
 
 1. Cloner le repositories.
 2. Importer le fichier [blog_oc.sql](DATABASE/blog_oc.sql), situé dans le dossier /DATABASE/, dans votre base de données.
-3. Modifier l'accès à la base de données dans le fichier [DbModel.php](model/DbModel.php), situé dans le dossier /model/.
+3. Modifier l'accès à la base de données dans le fichier [DbModel.php](app/model/DbModel.php), situé dans le dossier /model/.
 
 	> const HOST = '*nom de votre serveur*';
 	> 
