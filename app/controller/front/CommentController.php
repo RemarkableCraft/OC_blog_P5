@@ -41,7 +41,7 @@ class CommentController extends Controller
 			$lien = $this->get_SERVER('HTTP_REFERER');
 			$this->set_SESSION('msgError', 'Erreur champ vide.');
 
-			header('Location: '.$lien);
+			header("Location: $lien");
 			die;
 		}
 	}

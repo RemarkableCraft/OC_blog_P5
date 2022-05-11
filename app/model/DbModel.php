@@ -6,9 +6,9 @@ namespace model;
  */
 abstract class DbModel
 {
-	const HOST = '';
-	const DBNAME = '';
-	const USERNAME = '';
+	const HOST = 'localhost';
+	const DBNAME = 'blog_oc';
+	const USERNAME = 'root';
 	const PASSWORD = '';
 
 	protected function dbConnect()
