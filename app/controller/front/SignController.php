@@ -258,10 +258,14 @@ class SignController extends Controller
 							}
 						} else {
 							http_response_code(404);
+							$error404 = new Controller;
+							$error404->error404();
 							die;
 						}
 					} else {
 						http_response_code(404);
+						$error404 = new Controller;
+						$error404->error404();
 						die;
 					}
 				} else {

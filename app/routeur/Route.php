@@ -39,6 +39,8 @@ class Route extends Superglobals
 						break;
 					} else {
 						http_response_code(404);
+						$error404 = new Controller;
+						$error404->error404();
 						break;
 					}
 
@@ -54,6 +56,8 @@ class Route extends Superglobals
 						break;
 					} else {
 						http_response_code(404);
+						$error404 = new Controller;
+						$error404->error404();
 						break;
 					}
 
@@ -74,6 +78,8 @@ class Route extends Superglobals
 						break;
 					} else {
 						http_response_code(404);
+						$error404 = new Controller;
+						$error404->error404();
 						break;
 					}
 
@@ -114,6 +120,8 @@ class Route extends Superglobals
 						break;
 					} else {
 						http_response_code(404);
+						$error404 = new Controller;
+						$error404->error404();
 						break;
 					}
 
@@ -124,6 +132,8 @@ class Route extends Superglobals
 						break;
 					} else {
 						http_response_code(404);
+						$error404 = new Controller;
+						$error404->error404();
 						break;
 					}
 
@@ -134,6 +144,8 @@ class Route extends Superglobals
 						break;
 					} else {
 						http_response_code(404);
+						$error404 = new Controller;
+						$error404->error404();
 						break;
 					}
 
@@ -149,6 +161,8 @@ class Route extends Superglobals
 
 				default:
 					http_response_code(404);
+					$error404 = new Controller;
+					$error404->error404();
 					break;
 			}
 		} else {

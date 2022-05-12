@@ -29,6 +29,8 @@ class AdminController extends Controller
 			require 'view/admin/dashboard.php';
 		} else {
 			http_response_code(404);
+			$error404 = new Controller;
+			$error404->error404();
 			die;
 		}
 	}
@@ -50,6 +52,8 @@ class AdminController extends Controller
 			require 'view/admin/create-editPost.php';
 		} else {
 			http_response_code(404);
+			$error404 = new Controller;
+			$error404->error404();
 			die;
 		}
 	}
@@ -119,6 +123,8 @@ class AdminController extends Controller
 			require 'view/admin/create-editPost.php';
 		} else {
 			http_response_code(404);
+			$error404 = new Controller;
+			$error404->error404();
 			die;
 		}
 	}
@@ -241,6 +247,8 @@ class AdminController extends Controller
 			}
 		} else {
 			http_response_code(404);
+			$error404 = new Controller;
+			$error404->error404();
 			die;
 		}
 	}
