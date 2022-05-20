@@ -18,7 +18,6 @@ class SignController extends Controller
 
 		if (isset($session['user']) && !empty($session['user'])) {
 			header('Location: ?action=home');
-			die;
 		} else {
 			$server = $this->get_SERVER();
 			$postUp = $this->get_SESSION('postUp');
