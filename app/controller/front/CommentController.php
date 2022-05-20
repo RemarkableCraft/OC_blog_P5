@@ -29,20 +29,17 @@ class CommentController extends Controller
 				$this->set_SESSION('msgSuccess', 'Votre message est bien enregistré, et est en attente de validation.');
 
 				header('Location: '.$lien);
-				die;
 			} else {
 				$lien = $this->get_SERVER('HTTP_REFERER');
 				$this->set_SESSION('msgError', 'Votre commentaire ne sait pas enregistré.<br>Veuillez recommencer.');
 
 				header('Location: '.$lien);
-				die;
 			}
 		} else {
 			$lien = $this->get_SERVER('HTTP_REFERER');
 			$this->set_SESSION('msgError', 'Erreur champ vide.');
 
 			header("Location: $lien");
-			die;
 		}
 	}
 

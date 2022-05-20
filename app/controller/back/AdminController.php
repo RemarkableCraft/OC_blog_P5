@@ -53,7 +53,6 @@ class AdminController extends Controller
 			http_response_code(404);
 			$error404 = new Controller;
 			$error404->error404();
-			die;
 		}
 	}
 
@@ -82,20 +81,17 @@ class AdminController extends Controller
 				$this->set_SESSION('msgSuccess','L\'article à bien été enregistré.');
 
 				header('Location: ?action=createPost');
-				die;
 			} else {
 				$this->set_SESSION('editPost', $POST);
 				$this->set_SESSION('msgError','Problème avec l\'enregistrement de l\'article.');
 
 				header('Location: ?action=createPost');
-				die;
 			}
 		} else {
 			$this->set_SESSION('editPost', $POST);
 			$this->set_SESSION('msgError','Veuillez remplir tous les champs du formulaire.');
 
 			header('Location: ?action=createPost');
-			die;
 		}
 	}
 
@@ -124,7 +120,6 @@ class AdminController extends Controller
 			http_response_code(404);
 			$error404 = new Controller;
 			$error404->error404();
-			die;
 		}
 	}
 
@@ -154,20 +149,17 @@ class AdminController extends Controller
 				$this->set_SESSION('msgSuccess','Article modifié.');
 
 				header('Location: ?action=editPost&id='.$idPost);
-				die;
 			} else {
 				$this->set_SESSION('updatePost', $POST);
 				$this->set_SESSION('msgError','Article non modifié.');
 
 				header('Location: ?action=editPost&id='.$idPost);
-				die;
 			}
 		} else {
 			$this->set_SESSION('updatePost', $POST);
 			$this->set_SESSION('msgError','Veuillez remplir tous les champs du formulaire.');
 
 			header('Location: ?action=editPost&id='.$idPost);
-			die;
 		}
 	}
 
@@ -186,12 +178,10 @@ class AdminController extends Controller
 			$this->set_SESSION('msgSuccess','Article supprimé');
 
 			header('Location: ?action=admin');
-			die;
 		} else {
 			$this->set_SESSION('msgError','Problème à la suppression de l\'article');
 
 			header('Location: ?action=admin');
-			die;
 		}
 	}
 
@@ -236,19 +226,16 @@ class AdminController extends Controller
 				$this->set_SESSION('msgSuccess','Le commentaire à bien été validé.');
 
 				header('Location: '.$lien);
-				die;
 			} else {
 				$lien = $this->get_SERVER('HTTP_REFERER');
 				$this->set_SESSION('msgError','Problème, le commentaire n\'a pas été validé.');
 
 				header('Location: '.$lien);
-				die;
 			}
 		} else {
 			http_response_code(404);
 			$error404 = new Controller;
 			$error404->error404();
-			die;
 		}
 	}
 

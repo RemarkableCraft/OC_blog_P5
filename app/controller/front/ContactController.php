@@ -25,21 +25,18 @@ class ContactController extends Controller
 				$this->set_SESSION("msgError", "Le nom est vide");
 
 				header('Location: ?action=home#contact');
-				die;
 			}
 
 			if (empty($post['email'])) {
 				$this->set_SESSION("msgError", "Le mail est vide");
 
 				header('Location: ?action=home#contact');
-				die;
 			}
 
 			if (empty($post['message'])) {
 				$this->set_SESSION("msgError", "Le message est vide");
 
 				header('Location: ?action=home#contact');
-				die;
 			}
 
 			// tous est bon
@@ -107,19 +104,16 @@ class ContactController extends Controller
 					$this->set_SESSION("msgSuccess", "Votre mail est bien partie");
 
 					header('Location: ?action=home#contact');
-					die;
 				} else {
 					$this->set_SESSION("msgError", "Problème avec l'envoi du message, veuillez recommencer");
 
 					header('Location: ?action=home#contact');
-					die;
 				}
 			}
 		} else {
 			$this->set_SESSION("msgError", "Le formulaire est vide");
 
 			header('Location: ?action=home#contact');
-			die;
 		}
 	}
 
