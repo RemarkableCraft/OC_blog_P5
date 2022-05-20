@@ -17,7 +17,7 @@
 				<div class="col-lg-4 col-md-6 blog-item">
 					<div class="blog-wrap">
 						<!-- ===== Image Post ===== -->
-						<img src="<?= html_entity_decode($post['imagePost']) ?>" class="img-fluid">
+						<img src="<?= $post['imagePost'] ?>" class="img-fluid">
 						<!-- END Image Post -->
 
 						<!-- ===== Infos Post ===== -->
